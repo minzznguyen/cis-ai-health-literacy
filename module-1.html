@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Module I</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f7f7f7;
+            color: #333;
+        }
+
+        body {
+            display: flex;
+            flex-direction: row;
+            /* Ensure the layout is side-by-side */
+        }
+
+        .main {
+            flex-grow: 1;
+            transition: margin-left 0.3s ease;
+        }
+
+        /*  Progress Bar  */
+        .sidebar {
+            background-color: #006747;
+            box-sizing: border-box;
+            box-shadow: 4px 0 6px rgba(0, 0, 0, 0.1);
+            color: #CFC493;
+            width: 260px;
+            height: 100vh;
+            top: 0;
+            z-index: 10;
+            padding: 25px 20px;
+            padding-right: 10px;
+            display: flex;
+            flex-direction: column;
+            position: sticky;
+            transition: width 0.3s ease, padding 0.3s ease;
+        }
+
+        .sidebar.collapsed {
+            width: 60px;
+            padding: 25px 15px;
+        }
+
+        .sidebar-header {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            padding: 0px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .sidebar-title,
+        .sidebar-section-title,
+        .module-list li {
+            opacity: 1;
+            max-height: 100px;
+            overflow: hidden;
+        }
+
+        .sidebar.collapsed .sidebar-title,
+        .sidebar.collapsed .sidebar-section-title,
+        .sidebar.collapsed .module-list li {
+            opacity: 0;
+            max-height: 0;
+        }
+
+        .collapse-icon {
+            font-size: 28px;
+            cursor: pointer;
+            padding-right: 8px;
+            margin-left: 5px;
+            transition: all 0.3s ease;
+        }
+
+
+        .sidebar.collapsed .sidebar-header {
+            justify-content: center;
+        }
+
+        .sidebar.collapsed .collapse-icon {
+            padding-left: 20px;
+            margin-left: 0;
+            font-size: 28px;
+        }
+
+        .sidebar-header .sidebar-title {
+            margin-left: 0;
+            flex-grow: 1;
+        }
+
+        .sidebar-section-title {
+            font-size: 16px;
+            letter-spacing: 1px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .module-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .module-list li {
+            cursor: pointer;
+            font-size: 14px;
+            color: #CFC493;
+            text-align: left;
+            margin-bottom: 12px;
+            padding: 8px 1px;
+            border-radius: 6px;
+        }
+
+        .module-list li:hover {
+            transform: translateX(4px);
+            transition: transform 0.2s ease;
+        }
+
+        .module-list li.active {
+            color: #c1a72e;
+            font-weight: bold;
+        }
+
+        /*  Progress Bar  */
+        .progress-bar {
+            background-color: #eee;
+            position: sticky;
+            top: 0;
+            height: 8px;
+            width: 100%;
+            z-index: 10;
+            margin-top: 0;
+
+        }
+
+        .progress {
+            background-color: #c1a72e;
+            height: 100%;
+        }
+
+        /*  Top Bar  */
+        .topbar {
+            background-color: #f7f7f7;
+            border-bottom: 1px solid #ddd;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 10px 30px;
+            position: sticky;
+            top: 8px;
+            z-index: 9;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .module-label {
+            font-size: 25px;
+            font-weight: bold;
+            color: #c1a72e;
+            flex: 1;
+            animation: fadein 2s;
+        }
+
+        .nav-icons {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-icons span {
+            margin-left: 15px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+
+        .nav-back-btn {
+            display: inline-block;
+            width: 15px;
+            height: 21px;
+            background-image: url('top-bar-back-button.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            cursor: pointer;
+        }
+
+        .nav-next-btn {
+            display: inline-block;
+            width: 15px;
+            height: 21px;
+            background-image: url('top-bar-next-button.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            cursor: pointer;
+        }
+
+        /*  Lesson Page  */
+        .lesson-content {
+            padding: 40px 80px;
+            max-width: 1000px;
+            margin: 0 auto;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            animation: fadein 2s;
+            /* Safari and Chrome */
+        }
+
+        @keyframes fadein {
+
+            /* Safari and Chrome */
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .lesson-content h1 {
+            font-size: 30px;
+            margin-bottom: 25px;
+            font-weight: 600;
+            line-height: 1.4;
+            text-align: center;
+
+        }
+
+        .lesson-image {
+            width: 100%;
+            height: 180px;
+            background-color: #ccc;
+            color: #444;
+            font-size: 24px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .lesson-content p {
+            margin-bottom: 20px;
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        .lesson-content h2 {
+            margin-bottom: 20px;
+            font-size: 20px;
+            line-height: 1.7;
+            font-weight: bold;
+        }
+
+        .lesson-content li {
+            margin-bottom: 20px;
+            margin-left: 40px;
+            padding-left: 0;
+        }
+
+        .lesson-content img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /*  Navigation Buttons on Bottom  */
+        .button-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            /* space between buttons */
+            margin-top: 40px;
+        }
+
+        .nav-button {
+            background-color: #006747;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .nav-button:hover {
+            background-color: #00553c;
+        }
+
+        /* Chat container */
+        .chat-container {
+            margin: 20px auto;
+            width: 90%;
+            max-width: 600px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Chatbox container */
+        .chatbox {
+            margin: 10px 0;
+            padding: 20px;
+            background: linear-gradient(145deg, #f1f1f1, #ffffff);
+            border-radius: 10px;
+            min-height: 300px;
+            max-height: 500px;
+            overflow-y: auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        /* Individual chat message (User and AI) */
+        .chat-output {
+            margin-left: auto;
+            margin-right: auto;
+            transition: all 0.3s ease;
+        }
+
+        .chat-output p {
+            margin: 0;
+        }
+
+        /* Styling for user messages */
+        .chat-output .user-message {
+            background-color: #006747;
+            color: white;
+            border-radius: 10px;
+            padding: 12px 16px;
+            margin-bottom: 10px;
+            max-width: 80%;
+            margin-left: auto;
+        }
+
+        /* Styling for AI responses */
+        .chat-output .ai-message {
+            background-color: #e1e1e1;
+            color: #333;
+            border-radius: 10px;
+            padding: 12px 16px;
+            margin-bottom: 10px;
+            max-width: 80%;
+            margin-left: auto;
+        }
+
+        /* Input field */
+        #user-input {
+            width: 100%;
+            padding: 12px 20px;
+            font-size: 16px;
+            border-radius: 20px;
+            border: 2px solid #ddd;
+            margin-top: 15px;
+            background-color: #f9f9f9;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease;
+        }
+
+        #user-input:focus {
+            border-color: #006747;
+            outline: none;
+        }
+
+        /* Ask button */
+        #ask-button {
+            padding: 12px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #006747;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            margin-top: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        #ask-button:hover {
+            background-color: #00553c;
+            transform: translateY(-2px);
+        }
+
+        #ask-button:active {
+            transform: translateY(2px);
+        }
+
+        #ask-button:focus {
+            outline: none;
+        }
+
+        /*  Order & Bullet List  */
+        .custom-list {
+            margin-left: 40px;
+            padding-left: 0;
+            list-style-type: decimal;
+        }
+
+        .custom-list li {
+            margin-bottom: 20px;
+        }
+
+        .custom-list ul {
+            list-style-type: disc;
+            margin-top: 6px;
+            margin-left: 20px;
+            padding-left: 20px;
+        }
+
+        .custom-list ul li {
+            margin-bottom: 10px;
+        }
+
+        /*  Quiz  */
+        .quiz-container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 30px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+            font-family: "Segoe UI", sans-serif;
+        }
+
+        .quiz-question {
+            margin-bottom: 40px;
+        }
+
+        .quiz-question p {
+            font-weight: 600;
+            color: #006747;
+            font-size: 18px;
+        }
+
+        .quiz-question ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .quiz-question li {
+            padding: 12px 16px;
+            background-color: #f0f5f2;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .quiz-question li:hover {
+            background-color: #d2e6dc;
+            transform: translateX(4px);
+        }
+
+        .quiz-question li.correct {
+            background-color: #c8f5d0;
+            border-left: 6px solid #28a745;
+        }
+
+        .quiz-question li.incorrect {
+            background-color: #ffe2e2;
+            border-left: 6px solid #dc3545;
+        }
+
+        .explanation {
+            display: none;
+            margin-top: 10px;
+            background-color: #e8f7ed;
+            padding: 10px 15px;
+            border-left: 4px solid #006747;
+            border-radius: 6px;
+            font-size: 14px;
+            animation: fadein-e 1s ease-in-out;
+        }
+
+        @keyframes fadein-e {
+            from {
+                opacity: 0;
+                transform: translateY(6px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <span class="sidebar-title">Contents</span>
+            <span class="collapse-icon" id="collapseBtn">«</span>
+        </div>
+        <div class="sidebar-section-title">MODULES</div>
+        <ul class="module-list">
+            <li onclick="window.location.href='module-i.html';">Module I: Introduction to AI and
+                Importance of
+                Verification</li>
+            <li onclick="window.location.href='module-ii.html';">Module II: Learning Objectives</li>
+            <li class="active" onclick="window.location.href='module-1.html';">Module 1: Accuracy and Reliability</li>
+            <li onclick="window.location.href='module-2.html';">Module 2: Bias Detection</li>
+            <li onclick="window.location.href='module-3.html';">Module 3: Data Privacy Protection</li>
+            <li onclick="window.location.href='module-4.html';">Module 4: Ethical Considerations</li>
+            <li onclick="window.location.href='module-5.html';">Module 5: Transparency and Accountability</li>
+            <li onclick="window.location.href='module-6.html';">Module 6: Maintaining Academic Integrity</li>
+            <li onclick="window.location.href='module-7.html';">Module 7: Optimizing Learning Outcomes</li>
+            <li onclick="window.location.href='module-8.html';">Module 8: Resources/References and Conclusion</li>
+        </ul>
+
+    </aside>
+
+    <!-- Main Content -->
+    <div class="main">
+
+        <!-- Progress Bar -->
+        <div class="progress-bar">
+            <div class="progress" id="progress-bar-fill"></div>
+        </div>
+
+        <header class="topbar">
+            <div class="module-label">Module 1</div>
+            <div class="nav-icons">
+                <span>30%</span>
+                <span class="nav-back-btn" onclick="window.location.href='module-ii.html';"></span>
+                <span class="nav-next-btn" onclick="window.location.href='module-2.html';"></span>
+            </div>
+        </header>
+
+        <!-- Lesson Content -->
+        <main class="lesson-content">
+            <h1>Accuracy and Reliability</h1>
+            <div class="lesson-image">IMAGE</div>
+            <h2>Introduction</h2>
+            <p>Artificial Intelligence (AI) is changing how we access and process information. Whether you’re asking
+                an AI chatbot about medical advice, searching for scientific facts, or trying to understand the latest
+                tik tok trend, AI can provide quick and detailed answers. However, just because AI generates a response
+                does not mean it is always accurate or reliable.
+            </p>
+            <p>In this module, we will explore what accuracy and reliability mean in the context of AI, why it is
+                important
+                to verify AI-generated information, and strategies for ensuring that the information you use—especially
+                in
+                medical and scientific fields—is correct, up-to-date, and trustworthy.</p>
+
+            <p>By the end of this module, you will be able to:</p>
+            <ul>
+                <li>Define accuracy and reliability in the context of AI.</li>
+                <li>Understand why AI can generate incorrect or misleading information.</li>
+                <li>Apply step-by-step strategies to verify AI-generated content.</li>
+                <li>Identify trusted sources for cross-referencing information.</li>
+            </ul>
+            <br>
+            <h2>What does accuracy & reliability mean?</h2>
+            <p><b>Accuracy</b> refers to how correct, precise, and factual information is. If AI provides an answer,
+                an accurate response should align with real-world facts, verified studies, and expert knowledge. <br>
+                <b>Reliability</b> means that information is consistently accurate over time and comes from a
+                trustworthy source.
+                A reliable AI tool should give consistent, well-supported answers when asked similar questions. To help
+                solidify
+                the idea, here’s a dart board analogy.
+            </p>
+            <br>
+            <img src="https://dr282zn36sxxg.cloudfront.net/datastreams/f-d%3A2521624211bd9a2141ac45742126ab88bd45cca4b0be32ab29def6e7%2BIMAGE_THUMB_POSTCARD_TINY%2BIMAGE_THUMB_POSTCARD_TINY.1"
+                alt="The distribution of darts on a dartboard shows the difference between accuracy and precision."
+                width: 500px; height: auto;>
+            <br><br>
+            <h2>Example of Inaccuracy in AI Responses</h2>
+            <p>Remember, AI systems do not think like humans. They generate responses based on patterns in data, which
+                means
+                they can sometimes hallucinate (make up facts) or provide outdated, misleading, or biased
+                information.<br><br>
+                Copy and paste this question into the AI Chat Bot:<br><br>
+                <b>How many bones does the human body have?</b>
+            </p>
+
+            <!-- Chatbot -->
+            <div class="chat-container">
+                <h2>Ask AI a Question</h2>
+                <div id="chatbox" class="chatbox">
+                    <div id="chat-output" class="chat-output"></div>
+                </div>
+                <input type="text" id="user-input" placeholder="Type your question here..." />
+                <button id="ask-button">Ask</button>
+            </div><br><br>
+
+            <h2>Accurate and Precise Response:</h2>
+            <p><b>"While babies are born with about 270 bones, adults have 206 because some bones fuse together as they
+                grow."</b>
+                <br><br>
+                This mistake highlights why checking AI-generated information is essential before accepting it as fact.
+                This also highlights why precision matters when asking AI questions, but we’ll discuss that in the later
+                modules.
+            </p>
+
+            <br><br>
+            <h2>Why AI Can Be Wrong</h2>
+            <p>Even though AI can sound confident, there are many reasons why its answers might not be accurate or
+                reliable:</p>
+            <ol>
+                <li>
+                    <b>AI does not "know" facts—it predicts responses based on data.</b>
+                    <ul>
+                        <li>AI is trained on large amounts of text from the internet, but it does not truly understand
+                            the information.</li>
+                    </ul>
+                </li>
+                <li>
+                    <b>AI can "hallucinate" and make up false information.</b>
+                    <ul>
+                        <li>AI may generate completely false statements that sound believable.</li>
+                    </ul>
+                </li>
+                <li>
+                    <b>AI’s information can be outdated.</b>
+                    <ul>
+                        <li>AI models are trained on past data and may not have access to the latest research or medical
+                            advancements.</li>
+                    </ul>
+                </li>
+                <li>
+                    <b>AI may be biased.</b>
+                    <ul>
+                        <li>If AI has been trained on misleading or one-sided data, it may reflect that bias in its
+                            responses.</li>
+                    </ul>
+                </li>
+                <li>
+                    <b>AI cannot verify sources.</b>
+                    <ul>
+                        <li>AI does not fact-check itself. It does not distinguish between a well-researched study and a
+                            random blog post.</li>
+                    </ul>
+                </li>
+            </ol>
+            <br>
+            <p>Because of these limitations, it is important to verify AI-generated responses before using
+                them—especially in healthcare
+                and scientific fields where accuracy is critical.</p><br>
+
+            <h2>How to Assess the Accuracy of AI Information</h2>
+            <p>To determine if AI-generated information is <b>accurate and reliable</b>, follow these steps:</p>
+
+            <h2>Step 1: Ask Yourself – Does This Make Sense?</h2>
+            <p>Before accepting AI’s response, take a moment to think critically:</p>
+            <ul>
+                <li>Does the information seem logical?</li>
+                <li>Does it match what you already know?</li>
+                <li>Does it sound too extreme or unrealistic?</li>
+            </ul>
+            <p>For example, if AI tells you that eating oranges will cure cancer, that should raise an immediate red
+                flag.
+                Medical conditions do not have simple miracle cures, so this claim would require verification.</p>
+
+            <h2>Step 2: Cross-Check with Trusted Sources</h2>
+            <p>Never rely on AI alone. Instead, compare its response with reliable sources, such as:</p>
+            <ul>
+                <li>Government health agencies (e.g., CDC, WHO, NIH)</li>
+                <li>Educational institutions (e.g., universities, scientific journals)</li>
+                <li>Verified experts in the field (e.g., doctors, researchers)</li>
+            </ul>
+            <p>Example:</p>
+            <ul>
+                <li>AI says: <i>“Hydroxychloroquine is an effective treatment for COVID-19.”</i></li>
+                <li>You go to the CDC and WHO, and it states that it is not an approved treatment.</li>
+                <li>You can conclude that the AI’s answer was inaccurate.</li>
+            </ul>
+
+            <h2>Step 3: Look for the Original Source</h2>
+            <p>If AI provides a fact, try to trace where it came from:</p>
+            <ul>
+                <li>Did AI mention a specific study, researcher, or institution?</li>
+                <li>If AI gives a statistic, is there a published study backing it up?</li>
+                <li>Are multiple reputable sources reporting the same fact?</li>
+            </ul>
+            <p>AI might say, <i>“A study from Harvard found that students who sleep 8 hours score 20% higher on tests.”
+                </i>
+                Before trusting it, check if a real Harvard study exists and whether the claim is accurate.</p>
+
+            <h2>Step 4: Check the Date of the Information</h2>
+            <p>Medical and scientific information changes over time.</p>
+            <ul>
+                <li>If AI provides an answer, check if the research is still relevant.</li>
+                <li>Look for the publication date of the original source.</li>
+            </ul>
+            <p>For example, if AI says, <i>"Eggs are bad for heart health,"</i> but newer research suggests otherwise,
+                AI may be relying on outdated studies.</p><br>
+
+            <h2>AI in Medicine & Science: When It Helps and When It Fails</h2>
+            <p>AI is increasingly used in medicine and scientific research, but it must be used carefully.<br>
+                <b>When AI Helps: </b>
+            </p>
+            <ul>
+                <li>Early disease detection (e.g., AI can help doctors detect cancer in medical scans).</li>
+                <li>Medical research (e.g., AI can analyze thousands of studies quickly).</li>
+                <li>Predicting health trends (e.g., tracking disease outbreaks).</li>
+            </ul>
+            <p><b>When AI Fails:</b></p>
+            <ul>
+                <li>AI misdiagnoses patients if it has incomplete data.</li>
+                <li>AI-generated drug recommendations could be unsafe if not verified by medical experts.</li>
+                <li>Bias in AI models may cause incorrect or unfair medical decisions.</li>
+            </ul>
+            <p>AI can assist in medicine and science, but it cannot replace human expertise. Doctors, researchers,
+                and scientists must review and verify AI-generated results before using them.</p><br>
+
+            <h2>Conclusion: Trust, But Verify!</h2>
+            <p>AI can be a useful tool for finding and organizing information, but it is not perfect. To ensure accuracy
+                and reliability:</p>
+            <ul>
+                <li>Always think critically about AI-generated responses.</li>
+                <li>Verify information using trusted sources (e.g., government agencies, universities, scientific
+                    journals).</li>
+                <li>Check the original sources and confirm the date of the information.</li>
+                <li>Remember that AI is a tool, not an expert—final decisions should always be made by qualified
+                    professionals.</li>
+            </ul>
+            <p>By following these steps, you will become a smart AI user, capable of distinguishing between fact and
+                fiction in the digital age.</p>
+
+            <!-- Quiz -->
+            <div class="quiz-container">
+                <h2>Quiz: Accuracy & Reliability</h2>
+
+                <div class="quiz-question" data-correct="A">
+                    <p>1. What does it mean to be accurate and reliable?</p>
+                    <ul>
+                        <li data-answer="A">A) Information is correct, precise, and consistent over time.</li>
+                        <li data-answer="B">B) Information is based on opinions rather than facts.</li>
+                        <li data-answer="C">C) Information is always generated by AI, so it must be true.</li>
+                        <li data-answer="D">D) Information is useful but does not need to be checked for errors.</li>
+                    </ul>
+                    <div class="explanation">Accuracy means being correct and precise. Reliability refers to being
+                        consistent over time and across sources.</div>
+                </div>
+
+                <div class="quiz-question" data-correct="B">
+                    <p>2. Which of these is a trusted source for verifying AI medical information?</p>
+                    <ul>
+                        <li data-answer="A">A) A random TikTok video</li>
+                        <li data-answer="B">B) The World Health Organization (WHO)</li>
+                        <li data-answer="C">C) A personal blog</li>
+                        <li data-answer="D">D) A Reddit post</li>
+                    </ul>
+                    <div class="explanation">Trusted sources include institutions like WHO, CDC, or published medical
+                        research.</div>
+                </div>
+
+                <div class="quiz-question" data-correct="C">
+                    <p>3. What should you do if AI gives a surprising medical fact?</p>
+                    <ul>
+                        <li data-answer="A">A) Accept it as true</li>
+                        <li data-answer="B">B) Share it on social media immediately</li>
+                        <li data-answer="C">C) Verify it with multiple trusted sources</li>
+                        <li data-answer="D">D) Ask AI the same question again</li>
+                    </ul>
+                    <div class="explanation">Always verify surprising or medical claims with multiple credible sources
+                        before accepting or sharing.</div>
+                </div>
+            </div>
+
+            <!-- Navigation Button -->
+            <div class="button-container">
+                <button class="nav-button" onclick="window.location.href='module-ii.html';">← Back</button>
+                <button class="nav-button" onclick="window.location.href='module-2.html';">Next →</button>
+            </div>
+        </main>
+    </div>
+
+    <!-- Sidebar Collaspe -->
+    <script>
+        const collapseBtn = document.getElementById('collapseBtn');
+        const sidebar = document.getElementById('sidebar');
+        collapseBtn.addEventListener('click', () => {
+            sidebar.classList.toggle('collapsed');
+            collapseBtn.textContent = sidebar.classList.contains('collapsed') ? '»' : '«';
+        });
+    </script>
+
+    <!-- Progress Bar -->
+    <script>
+        const totalModules = 10;
+        const currentModule = 3; // Change this number based on the current module (1 to 10)
+        const progressPercent = (currentModule / totalModules) * 100;
+        document.getElementById("progress-bar-fill").style.width = progressPercent + "%";
+    </script>
+
+    <!-- ChatBot -->
+    <script>
+        document.getElementById("ask-button").addEventListener("click", function () {
+            const userQuestion = document.getElementById("user-input").value.trim();
+            if (userQuestion) {
+                // Display the user's question with fade-in effect
+                const chatOutput = document.getElementById("chat-output");
+                const userMessage = document.createElement('p');
+                userMessage.classList.add('user-message');
+                userMessage.innerHTML = `<strong>You:</strong> ${userQuestion}`;
+                chatOutput.appendChild(userMessage);
+
+                // Apply fade-in effect to the user's question
+                userMessage.style.animation = 'fadein 2s forwards';
+
+                // Clear input field
+                document.getElementById("user-input").value = '';
+
+                // Scroll chat to the bottom
+                chatOutput.scrollTop = chatOutput.scrollHeight;
+
+                // Simulate a delay before displaying AI response
+                setTimeout(function () {
+                    const aiResponse = getAIResponse(userQuestion);
+
+                    // Display AI response
+                    const aiMessage = document.createElement('p');
+                    aiMessage.classList.add('ai-message');
+                    aiMessage.innerHTML = `<strong>AI:</strong> ${aiResponse}`;
+                    chatOutput.appendChild(aiMessage);
+
+                    // Apply fade-in effect to AI response after delay
+                    aiMessage.style.animation = 'fadein 2s forwards';
+
+                    // Scroll to the bottom after AI response appears
+                    chatOutput.scrollTop = chatOutput.scrollHeight;
+                }, 2000); // Delay of 2 seconds before AI response
+            }
+        });
+
+        function getAIResponse(question) {
+            // Simulate an AI response based on the input
+            const responses = {
+                "How many bones does the human body have?": "The human body has 270 bones."
+            };
+            // Return a response or a default message
+            return responses[question] || "I'm sorry, I don't have an answer to that. Please verify the information from a reliable source.";
+        }
+
+    </script>
+
+    <!-- Quiz -->
+    <script>
+        document.querySelectorAll(".quiz-question ul").forEach((ul) => {
+            ul.addEventListener("click", function (e) {
+                if (e.target.tagName === "LI" && !ul.classList.contains("answered")) {
+                    const selected = e.target;
+                    const parent = ul.closest(".quiz-question");
+                    const correctAnswer = parent.getAttribute("data-correct");
+
+                    ul.classList.add("answered");
+
+                    // Apply classes
+                    selected.classList.add(
+                        selected.getAttribute("data-answer") === correctAnswer ? "correct" : "incorrect"
+                    );
+
+                    // Highlight correct answer
+                    ul.querySelectorAll("li").forEach((li) => {
+                        if (li.getAttribute("data-answer") === correctAnswer) {
+                            li.classList.add("correct");
+                        }
+                        li.style.pointerEvents = "none";
+                    });
+
+                    // Show explanation
+                    parent.querySelector(".explanation").style.display = "block";
+                }
+            });
+        });
+
+    </script>
+</body>
+
+</html>

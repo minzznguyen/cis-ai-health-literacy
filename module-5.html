@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Module 5: Transparency and Accountability</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html,
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f7f7f7;
+      color: #333;
+    }
+    body {
+      display: flex;
+      flex-direction: row;
+    }
+    .sidebar {
+      background-color: #006747;
+      box-shadow: 4px 0 6px rgba(0,0,0,0.1);
+      color: #CFC493;
+      width: 260px;
+      height: 100vh;
+      padding: 25px 20px;
+      padding-right: 10px;
+      display: flex;
+      flex-direction: column;
+      position: sticky;
+      transition: width 0.3s ease, padding 0.3s ease;
+    }
+    .sidebar.collapsed {
+      width: 60px;
+      padding: 25px 15px;
+    }
+    .sidebar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+    .sidebar-title,
+    .sidebar-section-title,
+    .module-list li {
+      opacity: 1;
+      max-height: 100px;
+      overflow: hidden;
+    }
+    .sidebar.collapsed .sidebar-title,
+    .sidebar.collapsed .sidebar-section-title,
+    .sidebar.collapsed .module-list li {
+      opacity: 0;
+      max-height: 0;
+    }
+    .collapse-icon {
+      font-size: 28px;
+      cursor: pointer;
+      padding-right: 8px;
+      margin-left: 5px;
+      transition: all 0.3s ease;
+    }
+    .sidebar.collapsed .sidebar-header {
+      justify-content: center;
+    }
+    .sidebar.collapsed .collapse-icon {
+      padding-left: 20px;
+      margin-left: 0;
+      font-size: 28px;
+    }
+    .sidebar-header .sidebar-title {
+      flex-grow: 1;
+      margin-left: 0;
+    }
+    .sidebar-section-title {
+      font-size: 16px;
+      letter-spacing: 1px;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+    .module-list {
+      list-style: none;
+      padding-left: 0;
+    }
+    .module-list li {
+      cursor: pointer;
+      font-size: 14px;
+      color: #CFC493;
+      text-align: left;
+      margin-bottom: 12px;
+      padding: 8px 1px;
+      border-radius: 6px;
+    }
+    .module-list li:hover {
+      transform: translateX(4px);
+      transition: transform 0.2s ease;
+    }
+    .module-list li.active {
+      color: #c1a72e;
+      font-weight: bold;
+    }
+    .main {
+      flex-grow: 1;
+      transition: margin-left 0.3s ease;
+    }
+    .progress-bar {
+      background-color: #eee;
+      position: sticky;
+      top: 0;
+      height: 8px;
+      width: 100%;
+      z-index: 10;
+    }
+    .progress {
+      background-color: #c1a72e;
+      height: 100%;
+    }
+    .topbar {
+      background-color: #f7f7f7;
+      border-bottom: 1px solid #ddd;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      padding: 10px 30px;
+      position: sticky;
+      top: 8px;
+      z-index: 9;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .module-label {
+      font-size: 25px;
+      font-weight: bold;
+      color: #c1a72e;
+      flex: 1;
+      animation: fadein 2s;
+    }
+    .nav-icons {
+      display: flex;
+      align-items: center;
+    }
+    .nav-icons span {
+      margin-left: 15px;
+      font-size: 20px;
+      cursor: pointer;
+    }
+    .nav-back-btn {
+      display: inline-block;
+      width: 15px;
+      height: 21px;
+      background-image: url('top-bar-back-button.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      cursor: pointer;
+    }
+    .nav-next-btn {
+      display: inline-block;
+      width: 15px;
+      height: 21px;
+      background-image: url('top-bar-next-button.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      cursor: pointer;
+    }
+    .lesson-content {
+      padding: 40px 80px;
+      max-width: 1000px;
+      margin: 0 auto;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      animation: fadein 2s;
+    }
+    @keyframes fadein {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .lesson-content h1 {
+      font-size: 30px;
+      margin-bottom: 25px;
+      font-weight: 600;
+      line-height: 1.4;
+      text-align: center;
+    }
+    .lesson-content h2 {
+      margin-top: 25px;
+      margin-bottom: 15px;
+      font-size: 22px;
+      font-weight: bold;
+    }
+    .lesson-content p,
+    .lesson-content ul,
+    .lesson-content ol {
+      margin-bottom: 20px;
+      font-size: 16px;
+      line-height: 1.7;
+    }
+    .lesson-content ul {
+      list-style-type: disc;
+      margin-left: 40px;
+    }
+    .lesson-content ol {
+      margin-left: 20px;
+    }
+    .lesson-content a {
+      color: #006747;
+      text-decoration: none;
+    }
+    .lesson-content a:hover {
+      text-decoration: underline;
+    }
+    /* Quiz styling */
+    .quiz-container {
+      background: #f0f5f2;
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 40px;
+    }
+    .quiz-question {
+      margin-bottom: 20px;
+    }
+    .quiz-question p {
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    .quiz-options label {
+      display: block;
+      padding: 8px;
+      margin-bottom: 5px;
+      cursor: pointer;
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      transition: background-color 0.3s;
+    }
+    .quiz-options label:hover {
+      background-color: #e9f2ec;
+    }
+    .quiz-result {
+      margin-top: 20px;
+      padding: 10px;
+      border-radius: 4px;
+      font-weight: bold;
+      display: none;
+    }
+    .quiz-result.correct {
+      background-color: #c8f5d0;
+      color: #2d662d;
+      border: 1px solid #28a745;
+    }
+    .quiz-result.incorrect {
+      background-color: #ffe2e2;
+      color: #a12d2d;
+      border: 1px solid #dc3545;
+    }
+    .submit-btn {
+      padding: 10px 20px;
+      background-color: #006747;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+    .submit-btn:hover {
+      background-color: #00553c;
+    }
+  </style>
+</head>
+<body>
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <span class="sidebar-title">Contents</span>
+      <span class="collapse-icon" id="collapseBtn">«</span>
+    </div>
+    <div class="sidebar-section-title">MODULES</div>
+    <ul class="module-list">
+      <li onclick="window.location.href='module-i.html';">
+        Module I: Introduction to AI and Importance of Verification
+      </li>
+      <li onclick="window.location.href='module-ii.html';">
+        Module II: Learning Objectives
+      </li>
+      <li onclick="window.location.href='module-1.html';">
+        Module 1: Accuracy and Reliability
+      </li>
+      <li onclick="window.location.href='module-2.html';">
+        Module 2: Bias Detection
+      </li>
+      <li onclick="window.location.href='module-3.html';">
+        Module 3: Data Privacy Protection
+      </li>
+      <li onclick="window.location.href='module-4.html';">
+        Module 4: Ethical Considerations
+      </li>
+      <li class="active" onclick="window.location.href='module-5.html';">
+        Module 5: Transparency and Accountability
+      </li>
+      <li onclick="window.location.href='module-6.html';">
+        Module 6: Maintaining Academic Integrity
+      </li>
+      <li onclick="window.location.href='module-7.html';">
+        Module 7: Optimizing Learning Outcomes
+      </li>
+      <li onclick="window.location.href='module-8.html';">
+        Module 8: Resources/References and Conclusion
+      </li>
+    </ul>
+  </aside>
+  
+  <!-- Main Content -->
+  <div class="main">
+    <div class="progress-bar">
+      <div class="progress" id="progress-bar-fill" style="width:70%;"></div>
+    </div>
+    <header class="topbar">
+      <div class="module-label">Module 5</div>
+      <div class="nav-icons">
+        <span>70%</span>
+        <span class="nav-back-btn" onclick="window.location.href='module-4.html';"></span>
+        <span class="nav-next-btn" onclick="window.location.href='module-6.html';"></span>
+      </div>
+    </header>
+  
+    <!-- Lesson Content -->
+    <main class="lesson-content">
+      <h1>Transparency and Accountability</h1>
+      
+      <h2>What Is Transparency and Accountability in AI?</h2>
+      <p>
+        When you use AI to get information—especially for something as important as health or research—it’s natural to wonder:
+      </p>
+      <ul>
+        <li>Where did this information come from?</li>
+        <li>Can I trust it?</li>
+        <li>Who is responsible if it’s wrong?</li>
+      </ul>
+      <p>
+        These questions relate to <strong>transparency</strong> (how clearly AI shows its sources and reasoning)
+        and <strong>accountability</strong> (who takes responsibility for its outputs). In science, healthcare, and education, these principles are essential for trust and responsible use of AI.
+      </p>
+      
+      <h2>Transparency: Knowing What’s Behind the Answer</h2>
+      <p>
+        Transparency means being open and honest about how something works. For AI, that includes:
+      </p>
+      <ul>
+        <li>Where it gets its information</li>
+        <li>How it was trained (what data it learned from)</li>
+        <li>Its limitations and risks</li>
+        <li>Whether it cites credible sources</li>
+      </ul>
+      <p>
+        Think of AI like a recipe. If you only get a slice of cake without knowing the ingredients or process, you might hesitate. But with full disclosure, you can make a smarter decision.
+      </p>
+      
+      <h2>Accountability: Who’s in Charge?</h2>
+      <p>
+        Even though AI creates answers, humans are ultimately responsible for its use. Accountability means:
+      </p>
+      <ul>
+        <li>Developers, educators, researchers, and healthcare professionals must review AI outputs</li>
+        <li>Users should double-check AI-generated results before relying on them</li>
+        <li>If something goes wrong, someone must take ownership and correct it</li>
+      </ul>
+      <p>
+        For instance, while AI can help analyze medical scans, doctors always make the final call. That’s true accountability.
+      </p>
+      
+      <h2>Why It Matters in Health & Research</h2>
+      <ul>
+        <li>Without transparency, you can’t be sure if the information is current, trusted, or biased.</li>
+        <li>Without accountability, there’s no safety net to correct mistakes — a risk in health, science, and education.</li>
+      </ul>
+      
+      <h2>Real-Life Example</h2>
+      <p>
+        Imagine an AI tool suggesting a new supplement for memory loss – but:
+      </p>
+      <ul>
+        <li>It fails to cite real studies</li>
+        <li>It was trained on outdated data</li>
+        <li>It omits potential side effects</li>
+      </ul>
+      <p>
+        Blindly relying on such output could lead to poor decisions or even harm. Clear sourcing, accurate data, and human oversight are crucial.
+      </p>
+      
+      <h2>Your Role: Be a Smart AI User</h2>
+      <ul>
+        <li>Ask “Where did this info come from?”</li>
+        <li>Choose tools that reveal their sources and training methods</li>
+        <li>Never rely solely on AI for critical decisions</li>
+        <li>Speak up if you see misinformation or bias</li>
+        <li>Always verify facts — especially in health or scientific topics</li>
+      </ul>
+      
+      <h2>Wrap-Up: Trust is Built with Clarity and Responsibility</h2>
+      <p>
+        AI can be incredible, but only when used with transparency and accountability. Understand how it works, verify its outputs, and take responsibility for its use. Remember: AI is a tool, not an expert.
+      </p>
+      
+      <!-- Interactive Quiz -->
+      <h2>Quiz: Check Your Understanding</h2>
+      <div class="quiz-container">
+        <form id="quiz-form">
+          <!-- Question 1 -->
+          <div class="quiz-question">
+            <p>1. What is transparency in AI?</p>
+            <div class="quiz-options">
+              <label>
+                <input type="radio" name="q1" value="A" /> A) Keeping AI tools hidden from users
+              </label>
+              <label>
+                <input type="radio" name="q1" value="B" /> B) Making AI fun to use
+              </label>
+              <label>
+                <input type="radio" name="q1" value="C" /> C) Being clear about how AI works and where it gets its information
+              </label>
+              <label>
+                <input type="radio" name="q1" value="D" /> D) Using complicated language to sound smart
+              </label>
+            </div>
+          </div>
+          <!-- Question 2 -->
+          <div class="quiz-question">
+            <p>2. What does accountability in AI mean?</p>
+            <div class="quiz-options">
+              <label>
+                <input type="radio" name="q2" value="A" /> A) Making AI responsible for its own actions
+              </label>
+              <label>
+                <input type="radio" name="q2" value="B" /> B) Knowing who is responsible for reviewing and fixing AI mistakes
+              </label>
+              <label>
+                <input type="radio" name="q2" value="C" /> C) Ignoring errors in AI responses
+              </label>
+              <label>
+                <input type="radio" name="q2" value="D" /> D) Letting AI run without supervision
+              </label>
+            </div>
+          </div>
+          <!-- Question 3 -->
+          <div class="quiz-question">
+            <p>3. Why is verifying AI-generated information important?</p>
+            <div class="quiz-options">
+              <label>
+                <input type="radio" name="q3" value="A" /> A) To see if the AI is smart enough
+              </label>
+              <label>
+                <input type="radio" name="q3" value="B" /> B) To check spelling
+              </label>
+              <label>
+                <input type="radio" name="q3" value="C" /> C) To ensure the information is accurate, up-to-date, and trustworthy
+              </label>
+              <label>
+                <input type="radio" name="q3" value="D" /> D) To copy it faster
+              </label>
+            </div>
+          </div>
+          <button type="button" class="submit-btn" onclick="submitQuiz()">Submit Quiz</button>
+        </form>
+        <div id="quiz-results"></div>
+      </div>
+      
+      <h2>Online Resources and External Links</h2>
+      <ul>
+        <li>
+          <a href="https://ainowinstitute.org/" target="_blank">AI Now Institute</a> – Research and policy recommendations on AI.
+        </li>
+        <li>
+          <a href="https://www.partnershiponai.org/" target="_blank">Partnership on AI</a> – Collaborative efforts promoting ethical AI practices.
+        </li>
+        <li>
+          <a href="https://ethicsinaction.ieee.org/" target="_blank">IEEE Global Initiative on Ethics of Autonomous and Intelligent Systems</a> – Resources on AI ethics and accountability.
+        </li>
+        <li>
+          <a href="https://www.forbes.com/sites/bernardmarr/2024/05/03/building-trust-in-ai-the-case-for-transparency/" target="_blank">Forbes on AI Transparency and Accountability</a> – An article discussing these concepts.
+        </li>
+      </ul>
+    </main>
+  </div>
+  
+  <script>
+    // Quiz functionality
+    function submitQuiz() {
+      // Define correct answers
+      const answers = { q1: 'C', q2: 'B', q3: 'C' };
+      
+      // Initialize result messages
+      let score = 0;
+      let feedback = '';
+      
+      // Check each question
+      for (let question in answers) {
+        const selected = document.querySelector('input[name="' + question + '"]:checked');
+        if (selected) {
+          if (selected.value === answers[question]) {
+            score++;
+            feedback += '<p class="quiz-result correct">Question ' + question.slice(1) + ': Correct!</p>';
+          } else {
+            feedback += '<p class="quiz-result incorrect">Question ' + question.slice(1) + ': Incorrect. The correct answer is option ' + answers[question] + '.</p>';
+          }
+        } else {
+          feedback += '<p class="quiz-result incorrect">Question ' + question.slice(1) + ': No answer selected. The correct answer is option ' + answers[question] + '.</p>';
+        }
+      }
+      
+      // Display feedback
+      const resultsDiv = document.getElementById('quiz-results');
+      resultsDiv.innerHTML = feedback;
+      // Make feedback visible
+      const resultElements = document.querySelectorAll('.quiz-result');
+      resultElements.forEach(function(el) {
+        el.style.display = 'block';
+      });
+    }
+    
+    // Sidebar collapse functionality
+    var collapseBtn = document.getElementById('collapseBtn');
+    var sidebar = document.getElementById('sidebar');
+    collapseBtn.addEventListener('click', function(){
+      sidebar.classList.toggle('collapsed');
+    });
+  </script>
+</body>
+</html>

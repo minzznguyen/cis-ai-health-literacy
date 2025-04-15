@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Module 6: Maintaining Academic Integrity</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html,
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f7f7f7;
+      color: #333;
+    }
+    body {
+      display: flex;
+      flex-direction: row;
+    }
+    .sidebar {
+      background-color: #006747;
+      box-shadow: 4px 0 6px rgba(0,0,0,0.1);
+      color: #CFC493;
+      width: 260px;
+      height: 100vh;
+      padding: 25px 20px;
+      padding-right: 10px;
+      display: flex;
+      flex-direction: column;
+      position: sticky;
+      transition: width 0.3s ease, padding 0.3s ease;
+    }
+    .sidebar.collapsed {
+      width: 60px;
+      padding: 25px 15px;
+    }
+    .sidebar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+    .sidebar-title,
+    .sidebar-section-title,
+    .module-list li {
+      opacity: 1;
+      max-height: 100px;
+      overflow: hidden;
+    }
+    .sidebar.collapsed .sidebar-title,
+    .sidebar.collapsed .sidebar-section-title,
+    .sidebar.collapsed .module-list li {
+      opacity: 0;
+      max-height: 0;
+    }
+    .collapse-icon {
+      font-size: 28px;
+      cursor: pointer;
+      padding-right: 8px;
+      margin-left: 5px;
+      transition: all 0.3s ease;
+    }
+    .sidebar.collapsed .sidebar-header {
+      justify-content: center;
+    }
+    .sidebar.collapsed .collapse-icon {
+      padding-left: 20px;
+      margin-left: 0;
+      font-size: 28px;
+    }
+    .sidebar-header .sidebar-title {
+      flex-grow: 1;
+      margin-left: 0;
+    }
+    .sidebar-section-title {
+      font-size: 16px;
+      letter-spacing: 1px;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+    .module-list {
+      list-style: none;
+      padding-left: 0;
+    }
+    .module-list li {
+      cursor: pointer;
+      font-size: 14px;
+      color: #CFC493;
+      text-align: left;
+      margin-bottom: 12px;
+      padding: 8px 1px;
+      border-radius: 6px;
+    }
+    .module-list li:hover {
+      transform: translateX(4px);
+      transition: transform 0.2s ease;
+    }
+    .module-list li.active {
+      color: #c1a72e;
+      font-weight: bold;
+    }
+    .main {
+      flex-grow: 1;
+      transition: margin-left 0.3s ease;
+    }
+    .progress-bar {
+      background-color: #eee;
+      position: sticky;
+      top: 0;
+      height: 8px;
+      width: 100%;
+      z-index: 10;
+    }
+    .progress {
+      background-color: #c1a72e;
+      height: 100%;
+    }
+    .topbar {
+      background-color: #f7f7f7;
+      border-bottom: 1px solid #ddd;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      padding: 10px 30px;
+      position: sticky;
+      top: 8px;
+      z-index: 9;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .module-label {
+      font-size: 25px;
+      font-weight: bold;
+      color: #c1a72e;
+      flex: 1;
+      animation: fadein 2s;
+    }
+    .nav-icons {
+      display: flex;
+      align-items: center;
+    }
+    .nav-icons span {
+      margin-left: 15px;
+      font-size: 20px;
+      cursor: pointer;
+    }
+    .nav-back-btn {
+      display: inline-block;
+      width: 15px;
+      height: 21px;
+      background-image: url('top-bar-back-button.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      cursor: pointer;
+    }
+    .nav-next-btn {
+      display: inline-block;
+      width: 15px;
+      height: 21px;
+      background-image: url('top-bar-next-button.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      cursor: pointer;
+    }
+    .lesson-content {
+      padding: 40px 80px;
+      max-width: 1000px;
+      margin: 0 auto;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      animation: fadein 2s;
+    }
+    @keyframes fadein {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .lesson-content h1 {
+      font-size: 30px;
+      margin-bottom: 25px;
+      font-weight: 600;
+      line-height: 1.4;
+      text-align: center;
+    }
+    .lesson-content h2 {
+      margin-top: 25px;
+      margin-bottom: 15px;
+      font-size: 22px;
+      font-weight: bold;
+    }
+    .lesson-content p,
+    .lesson-content ul,
+    .lesson-content ol {
+      margin-bottom: 20px;
+      font-size: 16px;
+      line-height: 1.7;
+    }
+    .lesson-content ul {
+      list-style-type: disc;
+      margin-left: 40px;
+    }
+    .lesson-content ol {
+      margin-left: 20px;
+    }
+    .lesson-content a {
+      color: #006747;
+      text-decoration: none;
+    }
+    .lesson-content a:hover {
+      text-decoration: underline;
+    }
+    /* Quiz styling */
+    .quiz-container {
+      background: #f0f5f2;
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 40px;
+    }
+    .quiz-question {
+      margin-bottom: 20px;
+    }
+    .quiz-question p {
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    .quiz-options label {
+      display: block;
+      padding: 8px;
+      margin-bottom: 5px;
+      cursor: pointer;
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      transition: background-color 0.3s;
+    }
+    .quiz-options label:hover {
+      background-color: #e9f2ec;
+    }
+    .quiz-result {
+      margin-top: 20px;
+      padding: 10px;
+      border-radius: 4px;
+      font-weight: bold;
+      display: none;
+    }
+    .quiz-result.correct {
+      background-color: #c8f5d0;
+      color: #2d662d;
+      border: 1px solid #28a745;
+    }
+    .quiz-result.incorrect {
+      background-color: #ffe2e2;
+      color: #a12d2d;
+      border: 1px solid #dc3545;
+    }
+    .submit-btn {
+      padding: 10px 20px;
+      background-color: #006747;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+    .submit-btn:hover {
+      background-color: #00553c;
+    }
+  </style>
+</head>
+<body>
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <span class="sidebar-title">Contents</span>
+      <span class="collapse-icon" id="collapseBtn">«</span>
+    </div>
+    <div class="sidebar-section-title">MODULES</div>
+    <ul class="module-list">
+      <li onclick="window.location.href='module-i.html';">
+        Module I: Introduction to AI and Importance of Verification
+      </li>
+      <li onclick="window.location.href='module-ii.html';">
+        Module II: Learning Objectives
+      </li>
+      <li onclick="window.location.href='module-1.html';">
+        Module 1: Accuracy and Reliability
+      </li>
+      <li onclick="window.location.href='module-2.html';">
+        Module 2: Bias Detection
+      </li>
+      <li onclick="window.location.href='module-3.html';">
+        Module 3: Data Privacy Protection
+      </li>
+      <li onclick="window.location.href='module-4.html';">
+        Module 4: Ethical Considerations
+      </li>
+	<li onclick="window.location.href='module-5.html';">Module 5: Transparency and Accountability</li>
+      <li class="active" onclick="window.location.href='module-6.html';">
+        Module 6: Maintaining Academic Integrity
+      </li>
+      <li onclick="window.location.href='module-7.html';">
+        Module 7: Optimizing Learning Outcomes
+      </li>
+      <li onclick="window.location.href='module-8.html';">
+        Module 8: Resources/References and Conclusion
+      </li>
+    </ul>
+  </aside>
+  
+  <!-- Main Content -->
+  <div class="main">
+    <div class="progress-bar">
+      <div class="progress" id="progress-bar-fill" style="width:75%;"></div>
+    </div>
+    <header class="topbar">
+      <div class="module-label">Module 6</div>
+      <div class="nav-icons">
+        <span>75%</span>
+        <span class="nav-back-btn" onclick="window.location.href='module-5.html';"></span>
+        <span class="nav-next-btn" onclick="window.location.href='module-7.html';"></span>
+      </div>
+    </header>
+  
+    <!-- Lesson Content -->
+    <main class="lesson-content">
+      <h1>Maintaining Academic Integrity</h1>
+      
+      <h2>What Does Academic Integrity Mean in the Age of AI?</h2>
+      <p>
+        Academic integrity means being honest, responsible, and ethical in your learning and research. With AI tools like ChatGPT or Grammarly AI readily available, it’s easier than ever to blur the lines—sometimes without even realizing it.
+      </p>
+      <p>
+        So, how do you use AI tools to support your work without crossing the line? This module explores exactly that.
+      </p>
+      
+      <h2>AI Tools Can Be Helpful... or Harmful</h2>
+      <p><strong>Helpful Use of AI:</strong></p>
+      <ul>
+        <li>Brainstorming ideas or outlines</li>
+        <li>Rewording your own writing to improve clarity</li>
+        <li>Summarizing long readings for quick understanding</li>
+        <li>Practicing questions and quizzes</li>
+      </ul>
+      <p><strong>Unethical Use of AI:</strong></p>
+      <ul>
+        <li>Copying and pasting AI responses as your own work</li>
+        <li>Asking AI to write your entire paper or assignment</li>
+        <li>Submitting AI-generated code without understanding it</li>
+        <li>Using AI to cheat on tests or bypass academic rules</li>
+      </ul>
+      
+      <h2>Plagiarism Risks with AI</h2>
+      <p>
+        Plagiarism is presenting someone else's work as your own—even if AI generated it. Submitting AI-written content without proper acknowledgment is still considered academic dishonesty in many schools and colleges. Moreover, if you don’t understand what you’re submitting, it will show in class discussions, tests, or presentations and affect your credibility.
+      </p>
+      
+      <h2>Responsible AI-Assisted Study Tips</h2>
+      <ul>
+        <li><strong>Use AI to Learn, Not Replace Learning:</strong> Ask AI to explain a topic, summarize readings, or quiz you on facts, but ensure you are understanding the material.</li>
+        <li><strong>Always Do Your Own Writing:</strong> AI can help polish grammar or suggest improvements—but the ideas and structure should be yours.</li>
+        <li><strong>Give Credit When Needed:</strong> If you use AI for ideas or drafting, acknowledge it appropriately based on your institution’s policy.</li>
+        <li><strong>Use Your Own Voice:</strong> Your unique thoughts are what teachers value. Keep your writing authentic.</li>
+      </ul>
+      
+      <h2>Quick Checklist: Are You Using AI Ethically?</h2>
+      <ul>
+        <li>Did I understand everything I got from AI?</li>
+        <li>Did I rewrite, revise, or expand on AI suggestions myself?</li>
+        <li>If required, did I let my teacher know I used AI support?</li>
+        <li>Could I explain this work if asked?</li>
+      </ul>
+      
+      <h2>Wrap-Up: AI is a Tool—You’re the Author</h2>
+      <p>
+        Using AI responsibly means knowing when to use it, how to use it, and when to step back and think independently. Don’t let AI do your learning for you—use it to enhance your understanding. Academic integrity is about owning your work, being honest about your process, and respecting your own learning journey.
+      </p>
+      
+      <!-- Interactive Quiz -->
+      <h2>Quiz: Check Your Understanding</h2>
+      <div class="quiz-container">
+        <form id="quiz-form">
+          <!-- Question 1 -->
+          <div class="quiz-question">
+            <p>1. What does it mean to use AI tools ethically in academic research and writing?</p>
+            <div class="quiz-options">
+              <label>
+                <input type="radio" name="q1" value="A" /> A) Letting AI do all the writing so you save time
+              </label>
+              <label>
+                <input type="radio" name="q1" value="B" /> B) Using AI to support your understanding, but doing your own thinking and writing
+              </label>
+              <label>
+                <input type="radio" name="q1" value="C" /> C) Asking AI for homework answers and submitting them
+              </label>
+              <label>
+                <input type="radio" name="q1" value="D" /> D) Hiding the fact that you used AI in your work
+              </label>
+            </div>
+          </div>
+          <!-- Question 2 -->
+          <div class="quiz-question">
+            <p>2. Why is it risky to copy-paste AI-generated content into your assignments?</p>
+            <div class="quiz-options">
+              <label>
+                <input type="radio" name="q2" value="A" /> A) AI-generated content is always incorrect
+              </label>
+              <label>
+                <input type="radio" name="q2" value="B" /> B) Teachers will be impressed by AI’s vocabulary
+              </label>
+              <label>
+                <input type="radio" name="q2" value="C" /> C) It could be considered plagiarism if not properly credited
+              </label>
+              <label>
+                <input type="radio" name="q2" value="D" /> D) It takes too long to format
+              </label>
+            </div>
+          </div>
+          <!-- Question 3 -->
+          <div class="quiz-question">
+            <p>3. What is a responsible way to use AI for studying?</p>
+            <div class="quiz-options">
+              <label>
+                <input type="radio" name="q3" value="A" /> A) Asking AI to write your test essay
+              </label>
+              <label>
+                <input type="radio" name="q3" value="B" /> B) Getting AI to summarize a long reading, then reviewing it yourself
+              </label>
+              <label>
+                <input type="radio" name="q3" value="C" /> C) Copying and pasting answers from AI into your assignment
+              </label>
+              <label>
+                <input type="radio" name="q3" value="D" /> D) Avoiding learning and relying entirely on AI tools
+              </label>
+            </div>
+          </div>
+          <button type="button" class="submit-btn" onclick="submitQuiz()">Submit Quiz</button>
+        </form>
+        <div id="quiz-results"></div>
+      </div>
+      
+      <h2>Online Resources and External Links</h2>
+      <ul>
+        <li>
+          <a href="https://academicintegrity.org/" target="_blank">International Center for Academic Integrity</a> – Resources on academic honesty.
+        </li>
+        <li>
+          <a href="https://www.edutopia.org/article/laws-ai-education/" target="_blank">Edutopia on Ethical AI</a> – Articles and tips on using AI responsibly in education.
+        </li>
+        <li>
+          <a href="https://www.chronicle.com/article/in-the-age-of-ai-is-education-just-an-illusion" target="_blank">The Chronicle of Higher Education</a> – Insights on academic integrity in the age of AI.
+        </li>
+      </ul>
+    </main>
+  </div>
+  
+  <script>
+    // Quiz functionality
+    function submitQuiz() {
+      // Define correct answers
+      const answers = { q1: 'B', q2: 'C', q3: 'B' };
+      
+      let feedback = '';
+      
+      // Check each question
+      for (let question in answers) {
+        const selected = document.querySelector('input[name="' + question + '"]:checked');
+        if (selected) {
+          if (selected.value === answers[question]) {
+            feedback += '<p class="quiz-result correct">Question ' + question.slice(1) + ': Correct!</p>';
+          } else {
+            feedback += '<p class="quiz-result incorrect">Question ' + question.slice(1) + ': Incorrect. The correct answer is option ' + answers[question] + '.</p>';
+          }
+        } else {
+          feedback += '<p class="quiz-result incorrect">Question ' + question.slice(1) + ': No answer selected. The correct answer is option ' + answers[question] + '.</p>';
+        }
+      }
+      
+      // Display feedback
+      const resultsDiv = document.getElementById('quiz-results');
+      resultsDiv.innerHTML = feedback;
+      const resultElements = document.querySelectorAll('.quiz-result');
+      resultElements.forEach(function(el) {
+        el.style.display = 'block';
+      });
+    }
+    
+    // Sidebar collapse functionality
+    const collapseBtn = document.getElementById('collapseBtn');
+    const sidebar = document.getElementById('sidebar');
+    collapseBtn.addEventListener('click', function(){
+      sidebar.classList.toggle('collapsed');
+    });
+  </script>
+</body>
+</html>

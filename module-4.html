@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Module I</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f7f7f7;
+      color: #333;
+    }
+
+    body {
+      display: flex;
+      flex-direction: row;
+      /* Ensure the layout is side-by-side */
+    }
+
+    .sidebar {
+      background-color: #006747;
+      box-sizing: border-box;
+      box-shadow: 4px 0 6px rgba(0, 0, 0, 0.1);
+      color: #CFC493;
+      width: 260px;
+      height: 100vh;
+      top: 0;
+      z-index: 10;
+      padding: 25px 20px;
+      padding-right: 10px;
+      display: flex;
+      flex-direction: column;
+      position: sticky;
+      transition: width 0.3s ease, padding 0.3s ease;
+    }
+
+    .sidebar.collapsed {
+      width: 60px;
+      padding: 25px 15px;
+    }
+
+    .sidebar-header {
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 15px;
+      padding: 0px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .sidebar-title,
+    .sidebar-section-title,
+    .module-list li {
+      opacity: 1;
+      max-height: 100px;
+      overflow: hidden;
+    }
+
+    .sidebar.collapsed .sidebar-title,
+    .sidebar.collapsed .sidebar-section-title,
+    .sidebar.collapsed .module-list li {
+      opacity: 0;
+      max-height: 0;
+    }
+
+    .collapse-icon {
+      font-size: 28px;
+      cursor: pointer;
+      padding-right: 8px;
+      margin-left: 5px;
+      transition: all 0.3s ease;
+    }
+
+
+    .sidebar.collapsed .sidebar-header {
+      justify-content: center;
+    }
+
+    .sidebar.collapsed .collapse-icon {
+      padding-left: 20px;
+      margin-left: 0;
+      font-size: 28px;
+    }
+
+    .sidebar-header .sidebar-title {
+      margin-left: 0;
+      flex-grow: 1;
+    }
+
+    .sidebar-section-title {
+      font-size: 16px;
+      letter-spacing: 1px;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+
+    .module-list {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .module-list li {
+      cursor: pointer;
+      font-size: 14px;
+      color: #CFC493;
+      text-align: left;
+      margin-bottom: 12px;
+      padding: 8px 1px;
+      border-radius: 6px;
+
+    }
+
+
+    .progress-bar {
+      background-color: #eee;
+      position: sticky;
+      top: 0;
+      height: 8px;
+      width: 100%;
+      z-index: 10;
+      margin-top: 0;
+
+    }
+
+    .progress {
+      background-color: #c1a72e;
+      height: 100%;
+    }
+
+    .topbar {
+      background-color: #f7f7f7;
+      border-bottom: 1px solid #ddd;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      padding: 10px 30px;
+      position: sticky;
+      top: 8px;
+      z-index: 9;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .module-label {
+      font-size: 25px;
+      font-weight: bold;
+      color: #c1a72e;
+      flex: 1;
+      animation: fadein 2s;
+    }
+
+    .nav-icons {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-icons span {
+      margin-left: 15px;
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+
+    .nav-back-btn {
+      display: inline-block;
+      width: 15px;
+      height: 21px;
+      background-image: url('top-bar-back-button.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      cursor: pointer;
+    }
+
+    .nav-next-btn {
+      display: inline-block;
+      width: 15px;
+      height: 21px;
+      background-image: url('top-bar-next-button.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      cursor: pointer;
+    }
+
+
+    .lesson-content {
+      padding: 40px 80px;
+      max-width: 1000px;
+      margin: 0 auto;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      animation: fadein 2s;
+    }
+
+    @keyframes fadein {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    .lesson-content h1 {
+      font-size: 30px;
+      margin-bottom: 25px;
+      font-weight: 600;
+      line-height: 1.4;
+      text-align: center;
+    }
+
+    .lesson-image {
+      width: 100%;
+      height: 180px;
+      background-color: #ccc;
+      color: #444;
+      font-size: 24px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 30px;
+    }
+
+    .lesson-content p {
+      margin-bottom: 20px;
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    .checklist {
+      margin-bottom: 30px;
+      padding-left: 20px;
+    }
+
+    .checklist li {
+      margin-bottom: 12px;
+      font-size: 16px;
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      /* space between buttons */
+      margin-top: 40px;
+    }
+
+    .nav-button {
+      background-color: #006747;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .nav-button:hover {
+      background-color: #00553c;
+    }
+
+
+    .module-list li:hover {
+      transform: translateX(4px);
+      transition: transform 0.2s ease;
+    }
+
+    .module-list li.active {
+      color: #c1a72e;
+      font-weight: bold;
+    }
+
+
+    .main {
+      flex-grow: 1;
+      transition: margin-left 0.3s ease;
+    }
+
+
+    .custom-list {
+      margin-left: 40px;
+      padding-left: 0;
+      list-style-type: decimal;
+    }
+
+    .custom-list>li {
+      margin-bottom: 20px;
+    }
+
+    .custom-list ul {
+      list-style-type: disc;
+      margin-top: 6px;
+      margin-left: 20px;
+      padding-left: 20px;
+    }
+
+    .custom-list ul li {
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <span class="sidebar-title">Contents</span>
+      <span class="collapse-icon" id="collapseBtn">«</span>
+    </div>
+    <div class="sidebar-section-title">MODULES</div>
+    <ul class="module-list">
+      <li onclick="window.location.href='module-i.html';">Module I: Introduction to AI and Importance of Verification
+      </li>
+      <li onclick="window.location.href='module-ii.html';">Module II: Learning Objectives</li>
+      <li onclick="window.location.href='module-1.html';">Module 1: Accuracy and Reliability</li>
+      <li onclick="window.location.href='module-2.html';">Module 2: Bias Detection</li>
+      <li onclick="window.location.href='module-3.html';">Module 3: Data Privacy Protection</li>
+      <li class="active" onclick="window.location.href='module-4.html';">Module 4: Ethical Considerations</li>
+      <li onclick="window.location.href='module-5.html';">Module 5: Transparency and Accountability</li>
+      <li onclick="window.location.href='module-6.html';">Module 6: Maintaining Academic Integrity</li>
+      <li onclick="window.location.href='module-7.html';">Module 7: Optimizing Learning Outcomes</li>
+      <li onclick="window.location.href='module-8.html';">Module 8: Resources/References and Conclusion</li>
+    </ul>
+  </aside>
+
+
+  <!-- Main Content -->
+  <div class="main">
+
+    <!-- Progress Bar -->
+    <div class="progress-bar">
+      <div class="progress" id="progress-bar-fill"></div>
+    </div>
+
+    <header class="topbar">
+      <div class="module-label">Module 4</div>
+      <div class="nav-icons">
+        <span>60%</span>
+        <span class="nav-back-btn" onclick="window.history.back();"></span>
+        <span class="nav-next-btn" onclick="window.location.href='module-5.html';"></span>
+      </div>
+    </header>
+
+<!-- Lesson Content -->
+<main class="lesson-content">
+  <h1>Ethical Considerations</h1>
+
+  <p>AI is becoming a huge part of many fields, including healthcare and education. But with this power comes the responsibility to use it in ways that are ethical. Here’s what you need to know:</p>
+
+  <h2><strong>Ethical Dilemmas in AI Use in Healthcare and Biomedical Research</strong></h2>
+  <ul>
+    <li><strong>Patient Privacy and Confidentiality</strong></li>
+    <p>In healthcare, patient privacy is key. Using AI to analyze health data can help doctors make better decisions, but it also raises concerns about keeping sensitive health information private. Imagine if your health records were shared without your permission, it's important to ensure AI systems protect your personal data just like any healthcare professional should.</p>
+
+    <li><strong>Bias and Fairness</strong></li>
+    <p>AI systems can sometimes develop biases based on the data they are trained on. If the data isn't diverse, the AI might treat people unfairly, such as making different recommendations based on someone's race, gender, or background. It’s important to create AI that’s fair for everyone, without favoring one group over another.</p>
+
+    <li><strong>Informed Consent</strong></li>
+    <p>Just like how you’re asked to agree to terms and conditions before using a website, patients should be fully informed before their data is used by AI in medical research or decision-making. Informed consent means knowing exactly how your data will be used, who will use it, and for what purpose.</p>
+  </ul>
+
+  <h2><strong>Role of AI in Patient Care, Medical Decision-Making, and Research Integrity</strong></h2>
+  <ul>
+    <li><strong>Clinical Decision Support</strong></li>
+    <p>AI can be a helpful tool for doctors by giving them recommendations based on evidence and data, but it’s important that doctors still make the final decision. Just like how you might ask a teacher for advice but still choose your own path, doctors should use AI recommendations alongside their professional judgment.</p>
+
+    <li><strong>Research Integrity</strong></li>
+    <p>AI can help researchers analyze data more accurately and reduce mistakes, which is great for making medical breakthroughs. But, we need to be careful and ensure that AI doesn’t introduce errors or biases into the research process. The goal is to use AI to improve research, not compromise its integrity.</p>
+  </ul>
+
+  <h2><strong>Responsible AI Usage in Academic and Professional Settings</strong></h2>
+  <ul>
+    <li><strong>Academic Integrity</strong></li>
+    <p>AI tools can be really useful for doing research, writing papers, or solving problems, but it’s important to use them responsibly. Just like copying someone’s homework is cheating, using AI to do your work for you without understanding it or giving proper credit is not okay. AI should help you learn, not do the work for you.</p>
+
+    <li><strong>Data Privacy in Education</strong></li>
+    <p>Just as we protect healthcare data, we must protect student data in schools. For example, schools must follow rules like FERPA (Family Educational Rights and Privacy Act) to make sure students’ personal information isn’t misused or shared without permission.</p>
+
+    <li><strong>Equity and Inclusion</strong></li>
+    <p>AI can be a great tool for making education more accessible. For example, AI can help students who need extra help by providing additional resources, making learning more inclusive. However, it’s crucial that AI is used in ways that ensure everyone, regardless of background or ability, has an equal opportunity to succeed.</p>
+  </ul>
+
+  <h2><strong>What Should Be Your Main Takeaway?</strong></h2>
+  <p>Using AI in fields like healthcare, education, and research can have amazing benefits, but we must use it responsibly. By thinking about ethical issues like privacy, fairness, and equity, we can make sure that AI is helping people in the right ways, without causing harm or leaving anyone behind.</p>
+
+  <div class="button-container">
+    <button class="nav-button" onclick="window.history.back();">← Back</button>
+    <button class="nav-button" onclick="window.location.href='module-5.html';">Next →</button>
+  </div>
+</main>
+
+
+
+  <script>
+    const collapseBtn = document.getElementById('collapseBtn');
+    const sidebar = document.getElementById('sidebar');
+
+    collapseBtn.addEventListener('click', () => {
+      sidebar.classList.toggle('collapsed');
+      collapseBtn.textContent = sidebar.classList.contains('collapsed') ? '»' : '«';
+    });
+  </script>
+  <script>
+    const totalModules = 10;
+    const currentModule = 6; // Change this number based on the current module (1 to 10)
+
+    const progressPercent = (currentModule / totalModules) * 100;
+    document.getElementById("progress-bar-fill").style.width = progressPercent + "%";
+  </script>
+
+</body>
+
+</html>

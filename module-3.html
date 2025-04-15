@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Module I</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f7f7f7;
+      color: #333;
+    }
+
+    body {
+      display: flex;
+      flex-direction: row;
+      /* Ensure the layout is side-by-side */
+    }
+
+    .sidebar {
+      background-color: #006747;
+      box-sizing: border-box;
+      box-shadow: 4px 0 6px rgba(0, 0, 0, 0.1);
+      color: #CFC493;
+      width: 260px;
+      height: 100vh;
+      top: 0;
+      z-index: 10;
+      padding: 25px 20px;
+      padding-right: 10px;
+      display: flex;
+      flex-direction: column;
+      position: sticky;
+      transition: width 0.3s ease, padding 0.3s ease;
+    }
+
+    .sidebar.collapsed {
+      width: 60px;
+      padding: 25px 15px;
+    }
+
+    .sidebar-header {
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 15px;
+      padding: 0px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .sidebar-title,
+    .sidebar-section-title,
+    .module-list li {
+      opacity: 1;
+      max-height: 100px;
+      overflow: hidden;
+    }
+
+    .sidebar.collapsed .sidebar-title,
+    .sidebar.collapsed .sidebar-section-title,
+    .sidebar.collapsed .module-list li {
+      opacity: 0;
+      max-height: 0;
+    }
+
+    .collapse-icon {
+      font-size: 28px;
+      cursor: pointer;
+      padding-right: 8px;
+      margin-left: 5px;
+      transition: all 0.3s ease;
+    }
+
+
+    .sidebar.collapsed .sidebar-header {
+      justify-content: center;
+    }
+
+    .sidebar.collapsed .collapse-icon {
+      padding-left: 20px;
+      margin-left: 0;
+      font-size: 28px;
+    }
+
+    .sidebar-header .sidebar-title {
+      margin-left: 0;
+      flex-grow: 1;
+    }
+
+    .sidebar-section-title {
+      font-size: 16px;
+      letter-spacing: 1px;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+
+    .module-list {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .module-list li {
+      cursor: pointer;
+      font-size: 14px;
+      color: #CFC493;
+      text-align: left;
+      margin-bottom: 12px;
+      padding: 8px 1px;
+      border-radius: 6px;
+
+    }
+
+
+    .progress-bar {
+      background-color: #eee;
+      position: sticky;
+      top: 0;
+      height: 8px;
+      width: 100%;
+      z-index: 10;
+      margin-top: 0;
+
+    }
+
+    .progress {
+      background-color: #c1a72e;
+      height: 100%;
+    }
+
+    .topbar {
+      background-color: #f7f7f7;
+      border-bottom: 1px solid #ddd;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      padding: 10px 30px;
+      position: sticky;
+      top: 8px;
+      z-index: 9;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .module-label {
+      font-size: 25px;
+      font-weight: bold;
+      color: #c1a72e;
+      flex: 1;
+      animation: fadein 2s;
+    }
+
+    .nav-icons {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-icons span {
+      margin-left: 15px;
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+
+    .nav-back-btn {
+      display: inline-block;
+      width: 15px;
+      height: 21px;
+      background-image: url('top-bar-back-button.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      cursor: pointer;
+    }
+
+    .nav-next-btn {
+      display: inline-block;
+      width: 15px;
+      height: 21px;
+      background-image: url('top-bar-next-button.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      cursor: pointer;
+    }
+
+
+    .lesson-content {
+      padding: 40px 80px;
+      max-width: 1000px;
+      margin: 0 auto;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      animation: fadein 2s;
+    }
+
+    @keyframes fadein {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    .lesson-content h1 {
+      font-size: 30px;
+      margin-bottom: 25px;
+      font-weight: 600;
+      line-height: 1.4;
+      text-align: center;
+    }
+
+    .lesson-image {
+      width: 100%;
+      height: 180px;
+      background-color: #ccc;
+      color: #444;
+      font-size: 24px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 30px;
+    }
+
+    .lesson-content p {
+      margin-bottom: 20px;
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    .checklist {
+      margin-bottom: 30px;
+      padding-left: 20px;
+    }
+
+    .checklist li {
+      margin-bottom: 12px;
+      font-size: 16px;
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      /* space between buttons */
+      margin-top: 40px;
+    }
+
+    .nav-button {
+      background-color: #006747;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .nav-button:hover {
+      background-color: #00553c;
+    }
+
+
+    .module-list li:hover {
+      transform: translateX(4px);
+      transition: transform 0.2s ease;
+    }
+
+    .module-list li.active {
+      color: #c1a72e;
+      font-weight: bold;
+    }
+
+
+    .main {
+      flex-grow: 1;
+      transition: margin-left 0.3s ease;
+    }
+
+
+    .custom-list {
+      margin-left: 40px;
+      padding-left: 0;
+      list-style-type: decimal;
+    }
+
+    .custom-list>li {
+      margin-bottom: 20px;
+    }
+
+    .custom-list ul {
+      list-style-type: disc;
+      margin-top: 6px;
+      margin-left: 20px;
+      padding-left: 20px;
+    }
+
+    .custom-list ul li {
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <span class="sidebar-title">Contents</span>
+      <span class="collapse-icon" id="collapseBtn">«</span>
+    </div>
+    <div class="sidebar-section-title">MODULES</div>
+    <ul class="module-list">
+      <li onclick="window.location.href='module-i.html';">Module I: Introduction to AI and Importance of Verification
+      </li>
+      <li onclick="window.location.href='module-ii.html';">Module II: Learning Objectives</li>
+      <li onclick="window.location.href='module-1.html';">Module 1: Accuracy and Reliability</li>
+      <li onclick="window.location.href='module-2.html';">Module 2: Bias Detection</li>
+      <li class="active" onclick="window.location.href='module-3.html';">Module 3: Data Privacy Protection</li>
+      <li onclick="window.location.href='module-4.html';">Module 4: Ethical Considerations</li>
+      <li onclick="window.location.href='module-5.html';">Module 5: Transparency and Accountability</li>
+      <li onclick="window.location.href='module-6.html';">Module 6: Maintaining Academic Integrity</li>
+      <li onclick="window.location.href='module-7.html';">Module 7: Optimizing Learning Outcomes</li>
+      <li onclick="window.location.href='module-8.html';">Module 8: Resources/References and Conclusion</li>
+    </ul>
+  </aside>
+
+
+  <!-- Main Content -->
+  <div class="main">
+
+    <!-- Progress Bar -->
+    <div class="progress-bar">
+      <div class="progress" id="progress-bar-fill"></div>
+    </div>
+
+    <header class="topbar">
+      <div class="module-label">Module 3</div>
+      <div class="nav-icons">
+        <span>50%</span>
+        <span class="nav-back-btn" onclick="window.history.back();"></span>
+        <span class="nav-next-btn" onclick="window.location.href='module-4.html';"></span>
+      </div>
+    </header>
+
+<!-- Lesson Content -->
+<main class="lesson-content">
+  <h1>Data Privacy Protection</h1>
+
+  <h2><strong>What is Data Privacy and Why Does it Matter?</strong></h2>
+  <p>Think about these two questions:</p>
+  <ul>
+    <li>What kind of information do you share online with friends and family?</li>
+    <li>What information do you keep private and protect from others?</li>
+  </ul>
+  <br>
+  <p>The details you try to keep private, like your home address, passwords, medical records, or personal conversations, are considered sensitive data. To keep this information safe, companies must follow data protection practices, such as encryption (scrambling data so only authorized users can read it) and access controls (limiting who can see or use the data).</p>
+  <p>That’s why protecting your data is so important. Just like you control what you post on social media, you should also be mindful of what you share with generative AI tools. AI systems collect and learn from data, and without the right precautions, your private information could end up in places you never intended.</p>
+
+  <h2><strong>Best Practices for Protecting Your Data When Using Generative AI</strong></h2>
+  <p>When you share information with generative AI tools, like asking a chatbot for advice or entering personal details, it is important to make sure your data stays safe and private. Here are some best practices for protecting your personal and medical data, which are just as important when interacting with AI as they are with anything else online.</p>
+
+  <h3><strong>Encryption: Locking Your Data Like a Secret Code</strong></h3>
+  <p>Imagine writing a secret message to a friend, and you want to make sure no one else can read it. Encryption is like putting that message in a secret code. When you use generative AI, the information you send, like health questions or personal preferences, should be encrypted, meaning it’s scrambled in a way that only the right people can read it. This keeps your data safe from hackers who might try to intercept it.</p>
+  <p>Make sure that if you ask an AI for advice or share anything personal, it is encrypted to ensure that only you and trusted people can see it to keep your info safe.</p>
+
+  <h3><strong>Access Controls: Only the Right People Can See Your Info</strong></h3>
+  <p>Think about your social media accounts. Do you set privacy controls so only certain people can see your posts? I sure hope you do. Similarly, access controls in AI tools make sure only authorized people can access the data the AI collects.</p>
+  <p>If you share personal or sensitive info with an AI, you want to know that only the right people can access it. Without proper access controls, your private data could be exposed to others, even without you realizing it.</p>
+
+  <h3><strong>Education and Training: Know What to Share and What Not to Share</strong></h3>
+  <p>That’s the purpose of this learning module! Before you use an AI tool, it’s important to know what personal information is safe to share and what’s not. Education and training help you understand the risks and ensure you’re not sharing things that could compromise your privacy.</p>
+  <p>Just like you learn to protect your online accounts from people trying to hack you, learning how to interact with AI responsibly is just as important. Knowing what not to share (e.g., your address, personal medical details, passwords) can help keep your data safe.</p>
+
+  <h2><strong>Risks of Sharing Sensitive Information with AI Systems</strong></h2>
+  <h3><strong>Data Collection and Consent: Are You Really Saying Yes?</strong></h3>
+  <p>Think about when you download an app or sign up for a website. Often, you’re asked to accept their terms and conditions. Sometimes, it’s not always clear how your data will be used or who will have access to it. Consent means that you’re agreeing to share your personal information, but you need to understand what you’re agreeing to.</p>
+  <p><strong>Risk:</strong> If you share personal details with an AI system without knowing exactly how your data will be used, it might end up being sold or used for things you didn't agree to, like advertising or tracking.</p>
+
+  <h3><strong>Data Leakage: When Your Data Escapes</strong></h3>
+  <p>Data leakage is when information you share ends up somewhere it shouldn't be. Even though you trust an AI system with your data, it might not always be as secure as you think. If the system doesn’t handle your data properly, your private information could leak out and be seen by people who shouldn’t have access to it.</p>
+  <p><strong>Risk:</strong> Hackers or other unauthorized people could steal your data if it’s not stored properly, and it might even get shared without your permission.</p>
+
+  <h3><strong>Surveillance and Bias: When AI is Watching You Too Closely</strong></h3>
+  <p>AI systems can sometimes be used for surveillance—like watching your behavior or tracking your activities. While some surveillance is used for security or improving services, it can also be misused to track people’s personal habits in ways that invade their privacy.</p>
+  <p><strong>Risk:</strong> Some AI systems might also have biases. They might treat people unfairly based on things like gender, race, or background. If an AI system learns from past data that’s biased or incomplete, it could discriminate against certain groups of people, leading to unfair treatment.</p>
+
+  <h2><strong>What Should Be Your Main Takeaway?</strong></h2>
+  <p>While AI systems can be really helpful, sharing personal data with them comes with risks. Without proper consent, your data might be used in ways you don’t want. Data leakage can expose your sensitive info to the wrong people, and AI bias can lead to unfair treatment. That’s why it’s crucial to be mindful of what you share with AI and ensure you understand how your data is being handled. Always read the terms and conditions, ask questions about privacy policies, and only provide the necessary information. By making informed decisions about your data and taking proactive steps to protect your privacy, you can help prevent misuse, safeguard your personal information, and ensure AI tools are used responsibly and ethically.</p>
+
+  <div class="button-container">
+    <button class="nav-button" onclick="window.history.back();">← Back</button>
+    <button class="nav-button" onclick="window.location.href='module-4.html';">Next →</button>
+  </div>
+</main>
+
+
+
+  <script>
+    const collapseBtn = document.getElementById('collapseBtn');
+    const sidebar = document.getElementById('sidebar');
+
+    collapseBtn.addEventListener('click', () => {
+      sidebar.classList.toggle('collapsed');
+      collapseBtn.textContent = sidebar.classList.contains('collapsed') ? '»' : '«';
+    });
+  </script>
+  <script>
+    const totalModules = 10;
+    const currentModule = 5; // Change this number based on the current module (1 to 10)
+
+    const progressPercent = (currentModule / totalModules) * 100;
+    document.getElementById("progress-bar-fill").style.width = progressPercent + "%";
+  </script>
+
+</body>
+
+</html>
