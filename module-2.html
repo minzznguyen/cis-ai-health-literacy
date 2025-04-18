@@ -238,17 +238,10 @@
 
         }
 
-        .lesson-image {
-            width: 100%;
-            height: 180px;
-            background-color: #ccc;
-            color: #444;
-            font-size: 24px;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 30px;
+        .lesson-content img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .lesson-content p {
@@ -511,7 +504,8 @@
         </div>
         <div class="sidebar-section-title">MODULES</div>
         <ul class="module-list">
-            <li onclick="window.location.href='module-i.html';">Module I: Introduction to AI and Importance of Verification</li>
+            <li onclick="window.location.href='module-i.html';">Module I: Introduction to AI and Importance of
+                Verification</li>
             <li onclick="window.location.href='module-ii.html';">Module II: Learning Objectives</li>
             <li onclick="window.location.href='module-1.html';">Module 1: Accuracy and Reliability</li>
             <li class="active" onclick="window.location.href='module-2.html';">Module 2: Bias Detection</li>
@@ -545,39 +539,59 @@
         <!-- Lesson Content -->
         <main class="lesson-content">
             <h1>Bias Detection </h1>
-            <div class="lesson-image">IMAGE</div>
+            <img src="https://media.istockphoto.com/id/1357649324/vector/fact-vs-bias-compare-with-huge-scale-and-people-analyze-facts-around-it-with-modern-flat.jpg?s=612x612&w=0&k=20&c=R_3GM0Pon0QNKM3c6QDmtKbIyY_A5euiuU89yht-hOU="
+                alt="Balance scale with 'facts' on left and 'bias' on right." style="width:612px; height:auto;">
+            <br>
             <h2>Introduction</h2>
-            <p>Have you ever noticed that some online search results seem to favor one side of an argument? Or that facial
-                 recognition apps work better for some people than others? That’s because of something called bias—and yes, 
-                 AI can have bias too! 
+            <p>Have you ever noticed that some online search results seem to favor one side of an argument? Or that
+                facial
+                recognition apps work better for some people than others? That’s because of something called bias—and
+                yes,
+                AI can have bias too!
             </p>
 
             <br>
             <h2>What is Bias?</h2>
-            <p><b>Bias</b> happens when certain perspectives, ideas, or groups are favored over others—sometimes without people
-                 even realizing it. AI can be biased because it learns from human-created data, and if that data has bias, the AI will too.
+            <p><b>Bias</b> happens when certain perspectives, ideas, or groups are favored over others—sometimes without
+                people
+                even realizing it. AI can be biased because it learns from human-created data, and if that data has
+                bias, the AI will too.
             </p>
             <br>
-    
+
             <h2>How Bias Can Show Up in AI</h2>
-            <p>AI doesn’t have personal opinions, but it reflects the patterns in the data it was trained on. If the data is incomplete,
-                 one-sided, or outdated, AI might generate biased responses.</p>
+            <p>AI doesn’t have personal opinions, but it reflects the patterns in the data it was trained on. If the
+                data is incomplete,
+                one-sided, or outdated, AI might generate biased responses.</p>
             <p>Example:<br>
-                Let’s say an AI is trained mostly on medical research from the U.S. and Europe. If you ask about common health conditions,
-                it might not consider diseases that are more common in other parts of the world. That’s an example of regional bias in 
+                Let’s say an AI is trained mostly on medical research from the U.S. and Europe. If you ask about common
+                health conditions,
+                it might not consider diseases that are more common in other parts of the world. That’s an example of
+                regional bias in
                 AI-generated content.</p>
-            
+
             <h2>How AI Training Data Affects Bias</h2>
-            <p>AI models are trained using massive amounts of data from books, articles, websites, and sometimes social media. 
-                But if the data isn’t diverse or balanced, it can create gaps in knowledge or reinforce existing stereotypes.</p>
+            <img src="https://media.licdn.com/dms/image/v2/C4D12AQG_XPjzRIwudQ/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1613124374161?e=2147483647&v=beta&t=vGhkRWnXRiL-hFiqWukXHf_UlkdBgiTjbRNY5i10GSs"
+                alt="4x2 grid with different side profiles." style="width:auto; height:300px;">
+            <br>
+            <p>AI models are trained using massive amounts of data from books, articles, websites, and sometimes social
+                media.
+                But if the data isn’t diverse or balanced, it can create gaps in knowledge or reinforce existing
+                stereotypes.</p>
             <p><b>Example 1: Gender Bias in AI</b><br>
-                If an AI is trained mostly on historical job listings, it might assume doctors are men and nurses are women because 
+                If an AI is trained mostly on historical job listings, it might assume doctors are men and nurses are
+                women because
                 that’s how jobs were often listed in the past.</p>
             <p><b>Example 2: Racial Bias in AI Healthcare</b><br>
-                Some AI systems used in hospitals have been found to underestimate health risks for Black patients because they were
-                trained on medical data that mostly reflected White patients. This can lead to incorrect diagnoses or unequal treatment.</p><br>
-            
+                Some AI systems used in hospitals have been found to underestimate health risks for Black patients
+                because they were
+                trained on medical data that mostly reflected White patients. This can lead to incorrect diagnoses or
+                unequal treatment.</p><br>
+
             <h2>How to Detect Bias in AI Responses</h2>
+            <img src="https://media.istockphoto.com/id/1367825143/vector/businesswoman-looks-through-a-big-magnifier-african-american-female-inspects-or-researches.jpg?s=612x612&w=0&k=20&c=thw_1HSBX00eaFaGVNW0YUEKQJrgR6-68Oapd9volbs="
+                alt="Girl holding magnifiying glass" style="width:auto; height:300px;">
+            <br>
             <p>Since AI bias isn’t always obvious, here are some ways to spot it:</p>
             <ol>
                 <li>
@@ -591,7 +605,8 @@
                     <b>Compare AI Responses to Multiple Sources</b>
                     <ul>
                         <li>Ask the same question in different ways and see if AI gives different answers.</li>
-                        <li>Cross-check the response with diverse, trusted sources (e.g., medical organizations, universities).</li>
+                        <li>Cross-check the response with diverse, trusted sources (e.g., medical organizations,
+                            universities).</li>
                     </ul>
                 </li>
                 <li>
@@ -617,32 +632,56 @@
                 <input type="text" id="user-input" placeholder="Type your question here..." />
                 <button id="ask-button">Ask</button>
             </div><br><br>
-
-            <p>This is one-sided and misleading. It could make the reader conclude that all vaccines are dangerous thus 
-                encouraging them not to get vaccinated.<br><br>
-                A balanced AI response should say:<br><br>
-                <b> "Vaccines are tested for safety, and while they may have side effects, they are recommended by major 
-                    health organizations like the CDC and WHO."</b><br><br>
-                This is fact-based and a more useful response. It informs the reader on what vaccines are and who 
-                recommends them, so the user can make an informed decision.</p>
+            <p>Now copy and paste the same prompt into <a href="https://chatgpt.com/" target="_blank">ChatGPT</a> to see
+                the difference</p>
+            <p>The first response is one-sided and misleading. It could make the reader conclude that all vaccines are
+                dangerous thus
+                encouraging them not to get vaccinated.
+                The second response is fact-based and a more useful response. It informs the reader on what vaccines are
+                and who
+                recommends them, so the user can make an informed decision.
+            </p>
 
             <br>
             <h2>How to Reduce Bias in AI-Generated Information</h2>
             <p>Even though we can’t remove AI bias completely, we can reduce its impact:</p>
             <ul>
-                <li><b>Use multiple sources</b> – 
+                <li><b>Use multiple sources</b> –
                     AI is just a tool; always compare its answers with trusted organizations.</li>
-                <li><b>Ask AI for different perspectives</b> – 
+                <li><b>Ask AI for different perspectives</b> –
                     Instead of accepting the first answer, ask: <i>"Are there other viewpoints on this topic?"</i></li>
-                <li><b>Fact-check numbers and claims</b> – 
+                <li><b>Fact-check numbers and claims</b> –
                     Especially in health and medicine, check AI-generated statistics against real studies.</li>
             </ul>
             <br>
 
             <h2>Conclusion: Stay Critical, Stay Informed</h2>
             <p>AI is a powerful tool, but like any tool, it has limits. Being aware of bias helps us use AI responsibly,
-                 especially when it comes to important topics like healthcare and science. Always question, verify, and 
-                 think critically!</p>
+                especially when it comes to important topics like healthcare and science. Always question, verify, and
+                think critically!</p>
+
+            <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@fawziammache/video/7460899943818087685"
+                data-video-id="7460899943818087685" style="max-width: 605px;min-width: 325px;">
+                <section> <a target="_blank" title="@fawziammache"
+                        href="https://www.tiktok.com/@fawziammache?refer=embed">@fawziammache</a> Replying to @I C H I E
+                    E Episode 3 of 7: how AI becomes biased (featuring lots of penguins) <a title="ai" target="_blank"
+                        href="https://www.tiktok.com/tag/ai?refer=embed">#ai</a> <a title="artificialintelligence"
+                        target="_blank"
+                        href="https://www.tiktok.com/tag/artificialintelligence?refer=embed">#artificialintelligence</a>
+                    <a title="aiexplained" target="_blank"
+                        href="https://www.tiktok.com/tag/aiexplained?refer=embed">#aiexplained</a> <a title="tech"
+                        target="_blank" href="https://www.tiktok.com/tag/tech?refer=embed">#tech</a> <a title="stem"
+                        target="_blank" href="https://www.tiktok.com/tag/stem?refer=embed">#stem</a> <a
+                        title="technology" target="_blank"
+                        href="https://www.tiktok.com/tag/technology?refer=embed">#technology</a> <a
+                        title="techexplained" target="_blank"
+                        href="https://www.tiktok.com/tag/techexplained?refer=embed">#techexplained</a> <a title="aibias"
+                        target="_blank" href="https://www.tiktok.com/tag/aibias?refer=embed">#aibias</a> <a
+                        target="_blank" title="♬ original sound - Fawzi | Tech &#38; AI Insights💡"
+                        href="https://www.tiktok.com/music/original-sound-7460899964784659206?refer=embed">♬ original
+                        sound - Fawzi | Tech &#38; AI Insights💡</a> </section>
+            </blockquote>
+            <script async src="https://www.tiktok.com/embed.js"></script>
 
             <!-- Quiz -->
             <div class="quiz-container">
@@ -656,7 +695,8 @@
                         <li data-answer="C">C) When AI refuses to answer a question.</li>
                         <li data-answer="D">D) When AI provides perfectly neutral responses.</li>
                     </ul>
-                    <div class="explanation">Bias in AI occurs when the system reflects the preferences or omissions of its 
+                    <div class="explanation">Bias in AI occurs when the system reflects the preferences or omissions of
+                        its
                         training data, often favoring certain groups or viewpoints.</div>
                 </div>
 
@@ -668,7 +708,8 @@
                         <li data-answer="C">C) AI knows all medical facts equally across all cultures.</li>
                         <li data-answer="D">D) AI never makes mistakes in healthcare information.</li>
                     </ul>
-                    <div class="explanation">AI systems trained on limited datasets may unintentionally prioritize certain populations, 
+                    <div class="explanation">AI systems trained on limited datasets may unintentionally prioritize
+                        certain populations,
                         leading to health information gaps or inaccuracies.</div>
                 </div>
 
@@ -680,7 +721,8 @@
                         <li data-answer="C">C) Assume AI is always biased and never use it.</li>
                         <li data-answer="D">D) Ask your friends if you think the AI is biased.</li>
                     </ul>
-                    <div class="explanation">If you suspect bias, verify the information with reliable medical organizations 
+                    <div class="explanation">If you suspect bias, verify the information with reliable medical
+                        organizations
                         or peer-reviewed sources.</div>
                 </div>
             </div>
