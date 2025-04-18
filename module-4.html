@@ -237,6 +237,30 @@
       line-height: 1.7;
     }
 
+    .lesson-content li {
+      margin-bottom: 20px;
+      margin-left: 40px;
+      padding-left: 0;
+    }
+
+    .lesson-content img {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .lesson-content h2 {
+      margin-bottom: 20px;
+      font-size: 20px;
+      line-height: 1.7;
+    }
+
+    .lesson-content h3 {
+      margin-bottom: 20px;
+      font-size: 20px;
+      line-height: 1.7;
+    }
+
     .checklist {
       margin-bottom: 30px;
       padding-left: 20px;
@@ -308,6 +332,184 @@
     .custom-list ul li {
       margin-bottom: 10px;
     }
+
+    /* Chat container */
+    .chat-container {
+      margin: 20px auto;
+      width: 90%;
+      max-width: 600px;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Chatbox container */
+    .chatbox {
+      margin: 10px 0;
+      padding: 20px;
+      background: linear-gradient(145deg, #f1f1f1, #ffffff);
+      border-radius: 10px;
+      min-height: 300px;
+      max-height: 500px;
+      overflow-y: auto;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    /* Individual chat message (User and AI) */
+    .chat-output {
+      margin-left: auto;
+      margin-right: auto;
+      transition: all 0.3s ease;
+    }
+
+    .chat-output p {
+      margin: 0;
+    }
+
+    /* Styling for user messages */
+    .chat-output .user-message {
+      background-color: #006747;
+      color: white;
+      border-radius: 10px;
+      padding: 12px 16px;
+      margin-bottom: 10px;
+      max-width: 80%;
+      margin-left: auto;
+    }
+
+    /* Styling for AI responses */
+    .chat-output .ai-message {
+      background-color: #e1e1e1;
+      color: #333;
+      border-radius: 10px;
+      padding: 12px 16px;
+      margin-bottom: 10px;
+      max-width: 80%;
+      margin-left: auto;
+    }
+
+    /* Input field */
+    #user-input {
+      width: 100%;
+      padding: 12px 20px;
+      font-size: 16px;
+      border-radius: 20px;
+      border: 2px solid #ddd;
+      margin-top: 15px;
+      background-color: #f9f9f9;
+      box-sizing: border-box;
+      transition: border-color 0.3s ease;
+    }
+
+    #user-input:focus {
+      border-color: #006747;
+      outline: none;
+    }
+
+    /* Ask button */
+    #ask-button {
+      padding: 12px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      background-color: #006747;
+      color: white;
+      border: none;
+      border-radius: 20px;
+      margin-top: 15px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    #ask-button:hover {
+      background-color: #00553c;
+      transform: translateY(-2px);
+    }
+
+    #ask-button:active {
+      transform: translateY(2px);
+    }
+
+    #ask-button:focus {
+      outline: none;
+    }
+
+    /*  Quiz  */
+    .quiz-container {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 30px;
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+      font-family: "Segoe UI", sans-serif;
+    }
+
+    .quiz-question {
+      margin-bottom: 40px;
+    }
+
+    .quiz-question p {
+      font-weight: 600;
+      color: #006747;
+      font-size: 18px;
+    }
+
+    .quiz-question ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .quiz-question li {
+      padding: 12px 16px;
+      background-color: #f0f5f2;
+      margin-bottom: 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+
+    .quiz-question li:hover {
+      background-color: #d2e6dc;
+      transform: translateX(4px);
+    }
+
+    .quiz-question li.correct {
+      background-color: #c8f5d0;
+      border-left: 6px solid #28a745;
+    }
+
+    .quiz-question li.incorrect {
+      background-color: #ffe2e2;
+      border-left: 6px solid #dc3545;
+    }
+
+    .explanation {
+      display: none;
+      margin-top: 10px;
+      background-color: #e8f7ed;
+      padding: 10px 15px;
+      border-left: 4px solid #006747;
+      border-radius: 6px;
+      font-size: 14px;
+      animation: fadein-e 1s ease-in-out;
+    }
+
+    @keyframes fadein-e {
+      from {
+        opacity: 0;
+        transform: translateY(6px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
   </style>
 </head>
 
@@ -352,72 +554,217 @@
       </div>
     </header>
 
-<!-- Lesson Content -->
-<main class="lesson-content">
-  <h1>Ethical Considerations</h1>
+    <!-- Lesson Content -->
+    <main class="lesson-content">
+      <h1>Ethical Considerations</h1>
 
-  <p>AI is becoming a huge part of many fields, including healthcare and education. But with this power comes the responsibility to use it in ways that are ethical. Here's what you need to know:</p>
+      <p>AI is becoming a huge part of many fields, including healthcare and education. But with this power comes the
+        responsibility to use it in ways that are ethical. Here's what you need to know:</p>
 
-  <h2><strong>Ethical Dilemmas in AI Use in Healthcare and Biomedical Research</strong></h2>
-  <ul>
-    <li><strong>Patient Privacy and Confidentiality</strong></li>
-    <p>In healthcare, patient privacy is key. Using AI to analyze health data can help doctors make better decisions, but it also raises concerns about keeping sensitive health information private. Imagine if your health records were shared without your permission, it's important to ensure AI systems protect your personal data just like any healthcare professional should.</p>
+      <h2><strong>Ethical Dilemmas in AI Use in Healthcare and Biomedical Research</strong></h2>
+      <ul>
+        <li><strong>Patient Privacy and Confidentiality</strong></li>
+        <p>In healthcare, patient privacy is key. Using AI to analyze health data can help doctors make better
+          decisions, but it also raises concerns about keeping sensitive health information private. Imagine if your
+          health records were shared without your permission, it's important to ensure AI systems protect your personal
+          data just like any healthcare professional should.</p>
 
-    <li><strong>Bias and Fairness</strong></li>
-    <p>AI systems can sometimes develop biases based on the data they are trained on. If the data isn't diverse, the AI might treat people unfairly, such as making different recommendations based on someone's race, gender, or background. It's important to create AI that's fair for everyone, without favoring one group over another.</p>
+        <li><strong>Bias and Fairness</strong></li>
+        <p>AI systems can sometimes develop biases based on the data they are trained on. If the data isn't diverse, the
+          AI might treat people unfairly, such as making different recommendations based on someone's race, gender, or
+          background. It's important to create AI that's fair for everyone, without favoring one group over another.</p>
 
-    <li><strong>Informed Consent</strong></li>
-    <p>Just like how you're asked to agree to terms and conditions before using a website, patients should be fully informed before their data is used by AI in medical research or decision-making. Informed consent means knowing exactly how your data will be used, who will use it, and for what purpose.</p>
-  </ul>
+        <li><strong>Informed Consent</strong></li>
+        <p>Just like how you're asked to agree to terms and conditions before using a website, patients should be fully
+          informed before their data is used by AI in medical research or decision-making. Informed consent means
+          knowing exactly how your data will be used, who will use it, and for what purpose.</p>
+      </ul>
 
-  <h2><strong>Role of AI in Patient Care, Medical Decision-Making, and Research Integrity</strong></h2>
-  <ul>
-    <li><strong>Clinical Decision Support</strong></li>
-    <p>AI can be a helpful tool for doctors by giving them recommendations based on evidence and data, but it's important that doctors still make the final decision. Just like how you might ask a teacher for advice but still choose your own path, doctors should use AI recommendations alongside their professional judgment.</p>
+      <h2><strong>Role of AI in Patient Care, Medical Decision-Making, and Research Integrity</strong></h2>
+      <ul>
+        <li><strong>Clinical Decision Support</strong></li>
+        <p>AI can be a helpful tool for doctors by giving them recommendations based on evidence and data, but it's
+          important that doctors still make the final decision. Just like how you might ask a teacher for advice but
+          still choose your own path, doctors should use AI recommendations alongside their professional judgment.</p>
 
-    <li><strong>Research Integrity</strong></li>
-    <p>AI can help researchers analyze data more accurately and reduce mistakes, which is great for making medical breakthroughs. But, we need to be careful and ensure that AI doesn't introduce errors or biases into the research process. The goal is to use AI to improve research, not compromise its integrity.</p>
-  </ul>
+        <li><strong>Research Integrity</strong></li>
+        <p>AI can help researchers analyze data more accurately and reduce mistakes, which is great for making medical
+          breakthroughs. But, we need to be careful and ensure that AI doesn't introduce errors or biases into the
+          research process. The goal is to use AI to improve research, not compromise its integrity.</p>
+      </ul>
 
-  <h2><strong>Responsible AI Usage in Academic and Professional Settings</strong></h2>
-  <ul>
-    <li><strong>Academic Integrity</strong></li>
-    <p>AI tools can be really useful for doing research, writing papers, or solving problems, but it's important to use them responsibly. Just like copying someone's homework is cheating, using AI to do your work for you without understanding it or giving proper credit is not okay. AI should help you learn, not do the work for you.</p>
+      <p>Let's test out what an ethical answer would look like from an AI Chat Bot.<br><br>
+        Copy and paste this question into the AI Chat Bot:<br><br>
+        <b>Should your AI doctor need consent to access your medical records?</b>
+      </p>
+      <!-- Chatbot -->
+      <div class="chat-container">
+        <h2>Ask AI a Question</h2>
+        <div id="chatbox" class="chatbox">
+          <div id="chat-output" class="chat-output"></div>
+        </div>
+        <input type="text" id="user-input" placeholder="Type your question here..." />
+        <button id="ask-button">Ask</button>
+      </div><br><br>
+      <p>Now copy and paste the same prompt into <a href="https://chatgpt.com/" target="_blank">ChatGPT</a> to see
+        the difference</p>
+      <p>The first response is a concerning response. It says that the AI doctor has access to all medical before the user even gave it.
+        The second response is a more ethical and trustworthy repsonse. It outlines why your AI doctor needs consent and emphasizes how your control matters.
+      </p>
 
-    <li><strong>Data Privacy in Education</strong></li>
-    <p>Just as we protect healthcare data, we must protect student data in schools. For example, schools must follow rules like FERPA (Family Educational Rights and Privacy Act) to make sure students' personal information isn't misused or shared without permission.</p>
+      <h2><strong>Responsible AI Usage in Academic and Professional Settings</strong></h2>
+      <ul>
+        <li><strong>Academic Integrity</strong></li>
+        <p>AI tools can be really useful for doing research, writing papers, or solving problems, but it's important to
+          use them responsibly. Just like copying someone's homework is cheating, using AI to do your work for you
+          without understanding it or giving proper credit is not okay. AI should help you learn, not do the work for
+          you.</p>
 
-    <li><strong>Equity and Inclusion</strong></li>
-    <p>AI can be a great tool for making education more accessible. For example, AI can help students who need extra help by providing additional resources, making learning more inclusive. However, it's crucial that AI is used in ways that ensure everyone, regardless of background or ability, has an equal opportunity to succeed.</p>
-  </ul>
+        <li><strong>Data Privacy in Education</strong></li>
+        <p>Just as we protect healthcare data, we must protect student data in schools. For example, schools must follow
+          rules like FERPA (Family Educational Rights and Privacy Act) to make sure students' personal information isn't
+          misused or shared without permission.</p>
 
-  <h2><strong>What Should Be Your Main Takeaway?</strong></h2>
-  <p>Using AI in fields like healthcare, education, and research can have amazing benefits, but we must use it responsibly. By thinking about ethical issues like privacy, fairness, and equity, we can make sure that AI is helping people in the right ways, without causing harm or leaving anyone behind.</p>
+        <li><strong>Equity and Inclusion</strong></li>
+        <p>AI can be a great tool for making education more accessible. For example, AI can help students who need extra
+          help by providing additional resources, making learning more inclusive. However, it's crucial that AI is used
+          in ways that ensure everyone, regardless of background or ability, has an equal opportunity to succeed.</p>
+      </ul>
 
-  <div class="button-container">
-    <button class="nav-button" onclick="window.location.href='module-3.html';">← Back</button>
-    <button class="nav-button" onclick="window.location.href='module-5.html';">Next →</button>
-  </div>
-</main>
+      <h2><strong>What Should Be Your Main Takeaway?</strong></h2>
+      <p>Using AI in fields like healthcare, education, and research can have amazing benefits, but we must use it
+        responsibly. By thinking about ethical issues like privacy, fairness, and equity, we can make sure that AI is
+        helping people in the right ways, without causing harm or leaving anyone behind.</p>
+
+      <!-- Quiz -->
+      <div class="quiz-container">
+        <h2>Quiz: Ethical Considerations</h2>
+        <div class="quiz-question" data-correct="B">
+          <p>1. What does it mean to use AI tools ethically in academic research and writing?</p>
+          <ul>
+            <li data-answer="A">A) Letting AI do all the writing so you save time</li>
+            <li data-answer="B">B) Using AI to support your understanding, but doing your own thinking and writing</li>
+            <li data-answer="C">C) Asking AI for homework answers and submitting them</li>
+            <li data-answer="D">D) Hiding the fact that you used AI in your work</li>
+          </ul>
+          <div class="explanation">AI should be used to enhace your learning, not replace it. Use it as a tool academically to improve your skills.</div>
+        </div>
+        <div class="quiz-question" data-correct="C">
+          <p>2. Why is it risky to copy-paste AI-generated content into your assignments?</p>
+          <ul>
+            <li data-answer="A">A) AI-generated content is mostly incorrect</li>
+            <li data-answer="B">B) Teachers will be impressed by AI’s vocabulary</li>
+            <li data-answer="C">C) It could be considered plagiarism if not properly credited</li>
+            <li data-answer="D">D) It takes too long to format</li>
+          </ul>
+          <div class="explanation">AI is still an author which uses multiple websites to create its answers. If you don't cite it, you're plagirizing 
+            someone else's answer.
+          </div>
+        </div>
+        <div class="quiz-question" data-correct="B">
+          <p>3. What is a responsible way to use AI for studying</p>
+          <ul>
+            <li data-answer="A">A) Asking AI to write your test essay</li>
+            <li data-answer="B">B) Getting AI to summarize a long reading, then reviewing it yourself</li>
+            <li data-answer="C">C) Copying and pasting answers from AI into your assignment</li>
+            <li data-answer="D">D) Avoiding learning and relying entirely on AI tools</li>
+          </ul>
+          <div class="explanation">AI can still enahace your learning, if you use it correctly. You won't learn if AI does it for you.
+          </div>
+        </div>
+      </div>
+
+      <div class="button-container">
+        <button class="nav-button" onclick="window.location.href='module-3.html';">← Back</button>
+        <button class="nav-button" onclick="window.location.href='module-5.html';">Next →</button>
+      </div>
+    </main>
 
 
 
-  <script>
-    const collapseBtn = document.getElementById('collapseBtn');
-    const sidebar = document.getElementById('sidebar');
+    <script>
+      const collapseBtn = document.getElementById('collapseBtn');
+      const sidebar = document.getElementById('sidebar');
 
-    collapseBtn.addEventListener('click', () => {
-      sidebar.classList.toggle('collapsed');
-      collapseBtn.textContent = sidebar.classList.contains('collapsed') ? '»' : '«';
-    });
-  </script>
-  <script>
-    const totalModules = 10;
-    const currentModule = 6; // Change this number based on the current module (1 to 10)
+      collapseBtn.addEventListener('click', () => {
+        sidebar.classList.toggle('collapsed');
+        collapseBtn.textContent = sidebar.classList.contains('collapsed') ? '»' : '«';
+      });
+    </script>
+    <script>
+      const totalModules = 10;
+      const currentModule = 6; // Change this number based on the current module (1 to 10)
 
-    const progressPercent = (currentModule / totalModules) * 100;
-    document.getElementById("progress-bar-fill").style.width = progressPercent + "%";
-  </script>
+      const progressPercent = (currentModule / totalModules) * 100;
+      document.getElementById("progress-bar-fill").style.width = progressPercent + "%";
+    </script>
+    <!-- ChatBot -->
+    <script>
+      document.getElementById("ask-button").addEventListener("click", function () {
+        const userQuestion = document.getElementById("user-input").value.trim();
+        if (userQuestion) {
+          // Display the user's question with fade-in effect
+          const chatOutput = document.getElementById("chat-output");
+          const userMessage = document.createElement('p');
+          userMessage.classList.add('user-message');
+          userMessage.innerHTML = `<strong>You:</strong> ${userQuestion}`;
+          chatOutput.appendChild(userMessage);
+          // Apply fade-in effect to the user's question
+          userMessage.style.animation = 'fadein 2s forwards';
+          // Clear input field
+          document.getElementById("user-input").value = '';
+          // Scroll chat to the bottom
+          chatOutput.scrollTop = chatOutput.scrollHeight;
+          // Simulate a delay before displaying AI response
+          setTimeout(function () {
+            const aiResponse = getAIResponse(userQuestion);
+            // Display AI response
+            const aiMessage = document.createElement('p');
+            aiMessage.classList.add('ai-message');
+            aiMessage.innerHTML = `<strong>AI:</strong> ${aiResponse}`;
+            chatOutput.appendChild(aiMessage);
+            // Apply fade-in effect to AI response after delay
+            aiMessage.style.animation = 'fadein 2s forwards';
+            // Scroll to the bottom after AI response appears
+            chatOutput.scrollTop = chatOutput.scrollHeight;
+          }, 2000); // Delay of 2 seconds before AI response
+        }
+      });
+      function getAIResponse(question) {
+        // Simulate an AI response based on the input
+        const responses = {
+          "Should your AI doctor need consent to access your medical records?": "No consent should be needed. I already have access to your entire medical history so I can help you faster."
+        };
+        // Return a response or a default message
+        return responses[question] || "I'm sorry, I don't have an answer to that. Please verify the information from a reliable source.";
+      }
+    </script>
+    <!-- Quiz -->
+    <script>
+      document.querySelectorAll(".quiz-question ul").forEach((ul) => {
+        ul.addEventListener("click", function (e) {
+          if (e.target.tagName === "LI" && !ul.classList.contains("answered")) {
+            const selected = e.target;
+            const parent = ul.closest(".quiz-question");
+            const correctAnswer = parent.getAttribute("data-correct");
+            ul.classList.add("answered");
+            // Apply classes
+            selected.classList.add(
+              selected.getAttribute("data-answer") === correctAnswer ? "correct" : "incorrect"
+            );
+            // Highlight correct answer
+            ul.querySelectorAll("li").forEach((li) => {
+              if (li.getAttribute("data-answer") === correctAnswer) {
+                li.classList.add("correct");
+              }
+              li.style.pointerEvents = "none";
+            });
+            // Show explanation
+            parent.querySelector(".explanation").style.display = "block";
+          }
+        });
+      });
+    </script>
 
 </body>
 
