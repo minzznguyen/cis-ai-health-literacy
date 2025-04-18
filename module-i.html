@@ -220,23 +220,16 @@
 
     }
 
-    .lesson-image {
-      width: 100%;
-      height: 180px;
-      background-color: #ccc;
-      color: #444;
-      font-size: 24px;
-      font-weight: bold;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 30px;
-    }
-
     .lesson-content p {
       margin-bottom: 20px;
       font-size: 16px;
       line-height: 1.7;
+    }
+
+    .lesson-content img {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .checklist {
@@ -326,7 +319,6 @@
       <div class="module-label">Module I</div>
       <div class="nav-icons">
         <span>10%</span>
-        <span class="nav-back-btn" onclick="window.history.back();"></span>
         <span class="nav-next-btn" onclick="window.location.href='module-ii.html';"></span>
       </div>
     </header>
@@ -334,7 +326,10 @@
     <!-- Lesson Content -->
     <main class="lesson-content">
       <h1>Introduction to AI & <br> Importance of Verification</h1>
-      <div class="lesson-image">IMAGE</div>
+      <img
+        src="https://99designs-blog.imgix.net/blog/wp-content/uploads/2022/09/How-does-the-rise-of-ML-and-AI-affect-design.jpg?auto=format&q=60&w=1860&h=1046.25&fit=crop&crop=faces"
+        alt="Robot in blue background" style="width:800px; height:auto;">
+      <br>
 
       <p>Welcome to the Health and AI Literacy Learning Module for students attending the Biomedical Engineering Summer
         Program! You are stepping into an exciting and rapidly evolving field where technology and healthcare
