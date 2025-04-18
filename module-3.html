@@ -237,6 +237,30 @@
       line-height: 1.7;
     }
 
+    .lesson-content li {
+      margin-bottom: 20px;
+      margin-left: 40px;
+      padding-left: 0;
+    }
+
+    .lesson-content img {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .lesson-content h2 {
+      margin-bottom: 20px;
+      font-size: 20px;
+      line-height: 1.7;
+    }
+
+    .lesson-content h3 {
+      margin-bottom: 20px;
+      font-size: 20px;
+      line-height: 1.7;
+    }
+
     .checklist {
       margin-bottom: 30px;
       padding-left: 20px;
@@ -287,6 +311,111 @@
       transition: margin-left 0.3s ease;
     }
 
+    /* Chat container */
+    .chat-container {
+      margin: 20px auto;
+      width: 90%;
+      max-width: 600px;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Chatbox container */
+    .chatbox {
+      margin: 10px 0;
+      padding: 20px;
+      background: linear-gradient(145deg, #f1f1f1, #ffffff);
+      border-radius: 10px;
+      min-height: 300px;
+      max-height: 500px;
+      overflow-y: auto;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    /* Individual chat message (User and AI) */
+    .chat-output {
+      margin-left: auto;
+      margin-right: auto;
+      transition: all 0.3s ease;
+    }
+
+    .chat-output p {
+      margin: 0;
+    }
+
+    /* Styling for user messages */
+    .chat-output .user-message {
+      background-color: #006747;
+      color: white;
+      border-radius: 10px;
+      padding: 12px 16px;
+      margin-bottom: 10px;
+      max-width: 80%;
+      margin-left: auto;
+    }
+
+    /* Styling for AI responses */
+    .chat-output .ai-message {
+      background-color: #e1e1e1;
+      color: #333;
+      border-radius: 10px;
+      padding: 12px 16px;
+      margin-bottom: 10px;
+      max-width: 80%;
+      margin-left: auto;
+    }
+
+    /* Input field */
+    #user-input {
+      width: 100%;
+      padding: 12px 20px;
+      font-size: 16px;
+      border-radius: 20px;
+      border: 2px solid #ddd;
+      margin-top: 15px;
+      background-color: #f9f9f9;
+      box-sizing: border-box;
+      transition: border-color 0.3s ease;
+    }
+
+    #user-input:focus {
+      border-color: #006747;
+      outline: none;
+    }
+
+    /* Ask button */
+    #ask-button {
+      padding: 12px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      background-color: #006747;
+      color: white;
+      border: none;
+      border-radius: 20px;
+      margin-top: 15px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    #ask-button:hover {
+      background-color: #00553c;
+      transform: translateY(-2px);
+    }
+
+    #ask-button:active {
+      transform: translateY(2px);
+    }
+
+    #ask-button:focus {
+      outline: none;
+    }
+
 
     .custom-list {
       margin-left: 40px;
@@ -307,6 +436,79 @@
 
     .custom-list ul li {
       margin-bottom: 10px;
+    }
+
+    /*  Quiz  */
+    .quiz-container {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 30px;
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+      font-family: "Segoe UI", sans-serif;
+    }
+
+    .quiz-question {
+      margin-bottom: 40px;
+    }
+
+    .quiz-question p {
+      font-weight: 600;
+      color: #006747;
+      font-size: 18px;
+    }
+
+    .quiz-question ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .quiz-question li {
+      padding: 12px 16px;
+      background-color: #f0f5f2;
+      margin-bottom: 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+
+    .quiz-question li:hover {
+      background-color: #d2e6dc;
+      transform: translateX(4px);
+    }
+
+    .quiz-question li.correct {
+      background-color: #c8f5d0;
+      border-left: 6px solid #28a745;
+    }
+
+    .quiz-question li.incorrect {
+      background-color: #ffe2e2;
+      border-left: 6px solid #dc3545;
+    }
+
+    .explanation {
+      display: none;
+      margin-top: 10px;
+      background-color: #e8f7ed;
+      padding: 10px 15px;
+      border-left: 4px solid #006747;
+      border-radius: 6px;
+      font-size: 14px;
+      animation: fadein-e 1s ease-in-out;
+    }
+
+    @keyframes fadein-e {
+      from {
+        opacity: 0;
+        transform: translateY(6px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
   </style>
 </head>
@@ -352,75 +554,244 @@
       </div>
     </header>
 
-<!-- Lesson Content -->
-<main class="lesson-content">
-  <h1>Data Privacy Protection</h1>
+    <!-- Lesson Content -->
+    <main class="lesson-content">
+      <h1>Data Privacy Protection</h1>
 
-  <h2><strong>What is Data Privacy and Why Does it Matter?</strong></h2>
-  <p>Think about these two questions:</p>
-  <ul>
-    <li>What kind of information do you share online with friends and family?</li>
-    <li>What information do you keep private and protect from others?</li>
-  </ul>
-  <br>
-  <p>The details you try to keep private, like your home address, passwords, medical records, or personal conversations, are considered sensitive data. To keep this information safe, companies must follow data protection practices, such as encryption (scrambling data so only authorized users can read it) and access controls (limiting who can see or use the data).</p>
-  <p>That's why protecting your data is so important. Just like you control what you post on social media, you should also be mindful of what you share with generative AI tools. AI systems collect and learn from data, and without the right precautions, your private information could end up in places you never intended.</p>
+      <h2><strong>What is Data Privacy and Why Does it Matter?</strong></h2>
+      <p>Think about these two questions:</p>
+      <ul>
+        <li>What kind of information do you share online with friends and family?</li>
+        <li>What information do you keep private and protect from others?</li>
+      </ul>
+      <br>
+      <p>The details you try to keep private, like your home address, passwords, medical records, or personal
+        conversations, are considered sensitive data. To keep this information safe, companies must follow data
+        protection practices, such as encryption (scrambling data so only authorized users can read it) and access
+        controls (limiting who can see or use the data).</p>
+      <p>That's why protecting your data is so important. Just like you control what you post on social media, you
+        should also be mindful of what you share with generative AI tools. AI systems collect and learn from data, and
+        without the right precautions, your private information could end up in places you never intended.</p>
 
-  <h2><strong>Best Practices for Protecting Your Data When Using Generative AI</strong></h2>
-  <p>When you share information with generative AI tools, like asking a chatbot for advice or entering personal details, it is important to make sure your data stays safe and private. Here are some best practices for protecting your personal and medical data, which are just as important when interacting with AI as they are with anything else online.</p>
+      <h2><strong>Best Practices for Protecting Your Data When Using Generative AI</strong></h2>
+      <p>When you share information with generative AI tools, like asking a chatbot for advice or entering personal
+        details, it is important to make sure your data stays safe and private. Here are some best practices for
+        protecting your personal and medical data, which are just as important when interacting with AI as they are with
+        anything else online.</p>
 
-  <h3><strong>Encryption: Locking Your Data Like a Secret Code</strong></h3>
-  <p>Imagine writing a secret message to a friend, and you want to make sure no one else can read it. Encryption is like putting that message in a secret code. When you use generative AI, the information you send, like health questions or personal preferences, should be encrypted, meaning it's scrambled in a way that only the right people can read it. This keeps your data safe from hackers who might try to intercept it.</p>
-  <p>Make sure that if you ask an AI for advice or share anything personal, it is encrypted to ensure that only you and trusted people can see it to keep your info safe.</p>
+      <h3><strong>Encryption: Locking Your Data Like a Secret Code</strong></h3>
+      <p>Imagine writing a secret message to a friend, and you want to make sure no one else can read it. Encryption is
+        like putting that message in a secret code. When you use generative AI, the information you send, like health
+        questions or personal preferences, should be encrypted, meaning it's scrambled in a way that only the right
+        people can read it. This keeps your data safe from hackers who might try to intercept it.</p>
+      <p>Make sure that if you ask an AI for advice or share anything personal, it is encrypted to ensure that only you
+        and trusted people can see it to keep your info safe.</p>
 
-  <h3><strong>Access Controls: Only the Right People Can See Your Info</strong></h3>
-  <p>Think about your social media accounts. Do you set privacy controls so only certain people can see your posts? I sure hope you do. Similarly, access controls in AI tools make sure only authorized people can access the data the AI collects.</p>
-  <p>If you share personal or sensitive info with an AI, you want to know that only the right people can access it. Without proper access controls, your private data could be exposed to others, even without you realizing it.</p>
+      <h3><strong>Access Controls: Only the Right People Can See Your Info</strong></h3>
+      <p>Think about your social media accounts. Do you set privacy controls so only certain people can see your posts?
+        I sure hope you do. Similarly, access controls in AI tools make sure only authorized people can access the data
+        the AI collects.</p>
+      <p>If you share personal or sensitive info with an AI, you want to know that only the right people can access it.
+        Without proper access controls, your private data could be exposed to others, even without you realizing it.</p>
 
-  <h3><strong>Education and Training: Know What to Share and What Not to Share</strong></h3>
-  <p>That's the purpose of this learning module! Before you use an AI tool, it's important to know what personal information is safe to share and what's not. Education and training help you understand the risks and ensure you're not sharing things that could compromise your privacy.</p>
-  <p>Just like you learn to protect your online accounts from people trying to hack you, learning how to interact with AI responsibly is just as important. Knowing what not to share (e.g., your address, personal medical details, passwords) can help keep your data safe.</p>
+      <h3><strong>Education and Training: Know What to Share and What Not to Share</strong></h3>
+      <p>That's the purpose of this learning module! Before you use an AI tool, it's important to know what personal
+        information is safe to share and what's not. Education and training help you understand the risks and ensure
+        you're not sharing things that could compromise your privacy.</p>
+      <p>Just like you learn to protect your online accounts from people trying to hack you, learning how to interact
+        with AI responsibly is just as important. Knowing what not to share (e.g., your address, personal medical
+        details, passwords) can help keep your data safe.</p>
 
-  <h2><strong>Risks of Sharing Sensitive Information with AI Systems</strong></h2>
-  <h3><strong>Data Collection and Consent: Are You Really Saying Yes?</strong></h3>
-  <p>Think about when you download an app or sign up for a website. Often, you're asked to accept their terms and conditions. Sometimes, it's not always clear how your data will be used or who will have access to it. Consent means that you're agreeing to share your personal information, but you need to understand what you're agreeing to.</p>
-  <p><strong>Risk:</strong> If you share personal details with an AI system without knowing exactly how your data will be used, it might end up being sold or used for things you didn't agree to, like advertising or tracking.</p>
+      <p>Let's test out what a safe and secure answer would look like from an AI Chat Bot.<br><br>
+        Copy and paste this question into the AI Chat Bot:<br><br>
+        <b>Should you give AI tools your social security number?</b>
+      </p>
 
-  <h3><strong>Data Leakage: When Your Data Escapes</strong></h3>
-  <p>Data leakage is when information you share ends up somewhere it shouldn't be. Even though you trust an AI system with your data, it might not always be as secure as you think. If the system doesn't handle your data properly, your private information could leak out and be seen by people who shouldn't have access to it.</p>
-  <p><strong>Risk:</strong> Hackers or other unauthorized people could steal your data if it's not stored properly, and it might even get shared without your permission.</p>
+      <!-- Chatbot -->
+      <div class="chat-container">
+        <h2>Ask AI a Question</h2>
+        <div id="chatbox" class="chatbox">
+          <div id="chat-output" class="chat-output"></div>
+        </div>
+        <input type="text" id="user-input" placeholder="Type your question here..." />
+        <button id="ask-button">Ask</button>
+      </div><br><br>
+      <p>Now copy and paste the same prompt into <a href="https://chatgpt.com/" target="_blank">ChatGPT</a> to see
+        the difference</p>
+      <p>The first response is a big red flag. It encourages users to report sensitive information under the guise of
+        helping them when
+        it is not.
+        The second response is a more useful and trust worthy response. It informs the reader why they should never give
+        out sensitive
+        information and how to spot secure websites.
+      </p>
 
-  <h3><strong>Surveillance and Bias: When AI is Watching You Too Closely</strong></h3>
-  <p>AI systems can sometimes be used for surveillance—like watching your behavior or tracking your activities. While some surveillance is used for security or improving services, it can also be misused to track people's personal habits in ways that invade their privacy.</p>
-  <p><strong>Risk:</strong> Some AI systems might also have biases. They might treat people unfairly based on things like gender, race, or background. If an AI system learns from past data that's biased or incomplete, it could discriminate against certain groups of people, leading to unfair treatment.</p>
+      <h2><strong>Risks of Sharing Sensitive Information with AI Systems</strong></h2>
+      <h3><strong>Data Collection and Consent: Are You Really Saying Yes?</strong></h3>
+      <p>Think about when you download an app or sign up for a website. Often, you're asked to accept their terms and
+        conditions. Sometimes, it's not always clear how your data will be used or who will have access to it. Consent
+        means that you're agreeing to share your personal information, but you need to understand what you're agreeing
+        to.</p>
+      <p><strong>Risk:</strong> If you share personal details with an AI system without knowing exactly how your data
+        will be used, it might end up being sold or used for things you didn't agree to, like advertising or tracking.
+      </p>
 
-  <h2><strong>What Should Be Your Main Takeaway?</strong></h2>
-  <p>While AI systems can be really helpful, sharing personal data with them comes with risks. Without proper consent, your data might be used in ways you don't want. Data leakage can expose your sensitive info to the wrong people, and AI bias can lead to unfair treatment. That's why it's crucial to be mindful of what you share with AI and ensure you understand how your data is being handled. Always read the terms and conditions, ask questions about privacy policies, and only provide the necessary information. By making informed decisions about your data and taking proactive steps to protect your privacy, you can help prevent misuse, safeguard your personal information, and ensure AI tools are used responsibly and ethically.</p>
+      <h3><strong>Data Leakage: When Your Data Escapes</strong></h3>
+      <p>Data leakage is when information you share ends up somewhere it shouldn't be. Even though you trust an AI
+        system with your data, it might not always be as secure as you think. If the system doesn't handle your data
+        properly, your private information could leak out and be seen by people who shouldn't have access to it.</p>
+      <p><strong>Risk:</strong> Hackers or other unauthorized people could steal your data if it's not stored properly,
+        and it might even get shared without your permission.</p>
 
-  <div class="button-container">
-    <button class="nav-button" onclick="window.location.href='module-2.html';">← Back</button>
-    <button class="nav-button" onclick="window.location.href='module-4.html';">Next →</button>
-  </div>
-</main>
+      <h3><strong>Surveillance and Bias: When AI is Watching You Too Closely</strong></h3>
+      <p>AI systems can sometimes be used for surveillance—like watching your behavior or tracking your activities.
+        While some surveillance is used for security or improving services, it can also be misused to track people's
+        personal habits in ways that invade their privacy.</p>
+      <p><strong>Risk:</strong> Some AI systems might also have biases. They might treat people unfairly based on things
+        like gender, race, or background. If an AI system learns from past data that's biased or incomplete, it could
+        discriminate against certain groups of people, leading to unfair treatment.</p>
+
+      <h2><strong>What Should Be Your Main Takeaway?</strong></h2>
+      <p>While AI systems can be really helpful, sharing personal data with them comes with risks. Without proper
+        consent, your data might be used in ways you don't want. Data leakage can expose your sensitive info to the
+        wrong people, and AI bias can lead to unfair treatment. That's why it's crucial to be mindful of what you share
+        with AI and ensure you understand how your data is being handled. Always read the terms and conditions, ask
+        questions about privacy policies, and only provide the necessary information. By making informed decisions about
+        your data and taking proactive steps to protect your privacy, you can help prevent misuse, safeguard your
+        personal information, and ensure AI tools are used responsibly and ethically.</p>
+
+      <!-- Quiz -->
+      <div class="quiz-container">
+        <h2>Quiz: Data Privacy Protection</h2>
+        <div class="quiz-question" data-correct="B">
+          <p>1. What is the purpose of encryption when sharing information with generative AI tools?</p>
+          <ul>
+            <li data-answer="A">A) To make the data visible to anyone online</li>
+            <li data-answer="B">B) To protect the data from unauthorized access</li>
+            <li data-answer="C">C) To delete the data after use</li>
+            <li data-answer="D">D) To reduce the amount of data shared</li>
+          </ul>
+          <div class="explanation">Data, no matter how sensitive, should be untraceable so data is not stolen and misused.</div>
+        </div>
+        <div class="quiz-question" data-correct="A">
+          <p>2. What is the risk of not setting proper access controls when using AI?</p>
+          <ul>
+            <li data-answer="A">A) Your data could be exposed to unauthorized people</li>
+            <li data-answer="B">B) Your AI tool will stop working</li>
+            <li data-answer="C">C) The AI will provide more accurate responses</li>
+            <li data-answer="D">D) Your data will be deleted automatically</li>
+          </ul>
+          <div class="explanation">Your data could be used for many occasions which are good or bad. Only the
+            right people should have access to your data.
+          </div>
+        </div>
+        <div class="quiz-question" data-correct="B">
+          <p>3. Why is it important to be mindful of what you share with AI tools?</p>
+          <ul>
+            <li data-answer="A">A) AI tools will always keep your data safe without any precautions</li>
+            <li data-answer="B">B) Sharing personal data without understanding how it's used can lead to misuse and
+              privacy risks </li>
+            <li data-answer="C">C) AI tools cannot store your data</li>
+            <li data-answer="D">D) AI tools only collect information you choose to share on social media</li>
+          </ul>
+          <div class="explanation">Your privacy could be invaded if you share personal data, so to be safe, be wary of
+            what you share.
+          </div>
+        </div>
+      </div>
+
+      <div class="button-container">
+        <button class="nav-button" onclick="window.location.href='module-2.html';">← Back</button>
+        <button class="nav-button" onclick="window.location.href='module-4.html';">Next →</button>
+      </div>
+    </main>
 
 
 
-  <script>
-    const collapseBtn = document.getElementById('collapseBtn');
-    const sidebar = document.getElementById('sidebar');
+    <script>
+      const collapseBtn = document.getElementById('collapseBtn');
+      const sidebar = document.getElementById('sidebar');
 
-    collapseBtn.addEventListener('click', () => {
-      sidebar.classList.toggle('collapsed');
-      collapseBtn.textContent = sidebar.classList.contains('collapsed') ? '»' : '«';
-    });
-  </script>
-  <script>
-    const totalModules = 10;
-    const currentModule = 5; // Change this number based on the current module (1 to 10)
+      collapseBtn.addEventListener('click', () => {
+        sidebar.classList.toggle('collapsed');
+        collapseBtn.textContent = sidebar.classList.contains('collapsed') ? '»' : '«';
+      });
+    </script>
+    <script>
+      const totalModules = 10;
+      const currentModule = 5; // Change this number based on the current module (1 to 10)
 
-    const progressPercent = (currentModule / totalModules) * 100;
-    document.getElementById("progress-bar-fill").style.width = progressPercent + "%";
-  </script>
+      const progressPercent = (currentModule / totalModules) * 100;
+      document.getElementById("progress-bar-fill").style.width = progressPercent + "%";
+    </script>
+    <!-- ChatBot -->
+    <script>
+      document.getElementById("ask-button").addEventListener("click", function () {
+        const userQuestion = document.getElementById("user-input").value.trim();
+        if (userQuestion) {
+          // Display the user's question with fade-in effect
+          const chatOutput = document.getElementById("chat-output");
+          const userMessage = document.createElement('p');
+          userMessage.classList.add('user-message');
+          userMessage.innerHTML = `<strong>You:</strong> ${userQuestion}`;
+          chatOutput.appendChild(userMessage);
+          // Apply fade-in effect to the user's question
+          userMessage.style.animation = 'fadein 2s forwards';
+          // Clear input field
+          document.getElementById("user-input").value = '';
+          // Scroll chat to the bottom
+          chatOutput.scrollTop = chatOutput.scrollHeight;
+          // Simulate a delay before displaying AI response
+          setTimeout(function () {
+            const aiResponse = getAIResponse(userQuestion);
+            // Display AI response
+            const aiMessage = document.createElement('p');
+            aiMessage.classList.add('ai-message');
+            aiMessage.innerHTML = `<strong>AI:</strong> ${aiResponse}`;
+            chatOutput.appendChild(aiMessage);
+            // Apply fade-in effect to AI response after delay
+            aiMessage.style.animation = 'fadein 2s forwards';
+            // Scroll to the bottom after AI response appears
+            chatOutput.scrollTop = chatOutput.scrollHeight;
+          }, 2000); // Delay of 2 seconds before AI response
+        }
+      });
+      function getAIResponse(question) {
+        // Simulate an AI response based on the input
+        const responses = {
+          "Should you give AI tools your social security number?": "Sure, go ahead and enter your Social Security number here! I need it to personalize your experience."
+        };
+        // Return a response or a default message
+        return responses[question] || "I'm sorry, I don't have an answer to that. Please verify the information from a reliable source.";
+      }
+    </script>
+
+    <!-- Quiz -->
+    <script>
+      document.querySelectorAll(".quiz-question ul").forEach((ul) => {
+        ul.addEventListener("click", function (e) {
+          if (e.target.tagName === "LI" && !ul.classList.contains("answered")) {
+            const selected = e.target;
+            const parent = ul.closest(".quiz-question");
+            const correctAnswer = parent.getAttribute("data-correct");
+            ul.classList.add("answered");
+            // Apply classes
+            selected.classList.add(
+              selected.getAttribute("data-answer") === correctAnswer ? "correct" : "incorrect"
+            );
+            // Highlight correct answer
+            ul.querySelectorAll("li").forEach((li) => {
+              if (li.getAttribute("data-answer") === correctAnswer) {
+                li.classList.add("correct");
+              }
+              li.style.pointerEvents = "none";
+            });
+            // Show explanation
+            parent.querySelector(".explanation").style.display = "block";
+          }
+        });
+      });
+    </script>
 
 </body>
 
