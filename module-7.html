@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -11,23 +10,20 @@
       margin: 0;
       padding: 0;
     }
-
     html,
     body {
       font-family: 'Segoe UI', sans-serif;
       background-color: #f7f7f7;
       color: #333;
     }
-
     body {
       display: flex;
       flex-direction: row;
     }
-
     .sidebar {
       background-color: #006747;
       box-sizing: border-box;
-      box-shadow: 4px 0 6px rgba(0, 0, 0, 0.1);
+      box-shadow: 4px 0 6px rgba(0,0,0,0.1);
       color: #CFC493;
       width: 260px;
       height: 100vh;
@@ -40,22 +36,18 @@
       position: sticky;
       transition: width 0.3s ease, padding 0.3s ease;
     }
-
     .sidebar.collapsed {
       width: 60px;
       padding: 25px 15px;
     }
-
     .sidebar-header {
-      font-size: 28px;
-      font-weight: bold;
-      margin-bottom: 15px;
-      padding: 0px 0;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 15px;
     }
-
     .sidebar-title,
     .sidebar-section-title,
     .module-list li {
@@ -63,14 +55,12 @@
       max-height: 100px;
       overflow: hidden;
     }
-
     .sidebar.collapsed .sidebar-title,
     .sidebar.collapsed .sidebar-section-title,
     .sidebar.collapsed .module-list li {
       opacity: 0;
       max-height: 0;
     }
-
     .collapse-icon {
       font-size: 28px;
       cursor: pointer;
@@ -78,34 +68,28 @@
       margin-left: 5px;
       transition: all 0.3s ease;
     }
-
     .sidebar.collapsed .sidebar-header {
       justify-content: center;
     }
-
     .sidebar.collapsed .collapse-icon {
       padding-left: 20px;
       margin-left: 0;
       font-size: 28px;
     }
-
     .sidebar-header .sidebar-title {
-      margin-left: 0;
       flex-grow: 1;
+      margin-left: 0;
     }
-
     .sidebar-section-title {
       font-size: 16px;
       letter-spacing: 1px;
       font-weight: bold;
       margin-bottom: 15px;
     }
-
     .module-list {
       list-style: none;
       padding-left: 0;
     }
-
     .module-list li {
       cursor: pointer;
       font-size: 14px;
@@ -115,7 +99,18 @@
       padding: 8px 1px;
       border-radius: 6px;
     }
-
+    .module-list li:hover {
+      transform: translateX(4px);
+      transition: transform 0.2s ease;
+    }
+    .module-list li.active {
+      color: #c1a72e;
+      font-weight: bold;
+    }
+    .main {
+      flex-grow: 1;
+      transition: margin-left 0.3s ease;
+    }
     .progress-bar {
       background-color: #eee;
       position: sticky;
@@ -123,18 +118,15 @@
       height: 8px;
       width: 100%;
       z-index: 10;
-      margin-top: 0;
     }
-
     .progress {
       background-color: #c1a72e;
       height: 100%;
     }
-
     .topbar {
       background-color: #f7f7f7;
       border-bottom: 1px solid #ddd;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
       padding: 10px 30px;
       position: sticky;
       top: 8px;
@@ -143,7 +135,6 @@
       justify-content: space-between;
       align-items: center;
     }
-
     .module-label {
       font-size: 25px;
       font-weight: bold;
@@ -151,18 +142,15 @@
       flex: 1;
       animation: fadein 2s;
     }
-
     .nav-icons {
       display: flex;
       align-items: center;
     }
-
     .nav-icons span {
       margin-left: 15px;
       font-size: 20px;
       cursor: pointer;
     }
-
     .nav-back-btn {
       display: inline-block;
       width: 15px;
@@ -172,7 +160,6 @@
       background-repeat: no-repeat;
       cursor: pointer;
     }
-
     .nav-next-btn {
       display: inline-block;
       width: 15px;
@@ -182,7 +169,6 @@
       background-repeat: no-repeat;
       cursor: pointer;
     }
-
     .lesson-content {
       padding: 40px 80px;
       max-width: 1000px;
@@ -192,16 +178,10 @@
       flex-direction: column;
       animation: fadein 2s;
     }
-
     @keyframes fadein {
-      from {
-        opacity: 0;
-      }
-      to {
-        opacity: 1;
-      }
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
-
     .lesson-content h1 {
       font-size: 30px;
       margin-bottom: 25px;
@@ -209,96 +189,127 @@
       line-height: 1.4;
       text-align: center;
     }
-
-    .lesson-image {
-      width: 100%;
-      height: 180px;
-      background-color: #ccc;
-      color: #444;
-      font-size: 24px;
+    .lesson-content h2 {
+      margin-top: 25px;
+      margin-bottom: 15px;
+      font-size: 22px;
       font-weight: bold;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 30px;
     }
-
-    .lesson-content p {
+    .lesson-content p,
+    .lesson-content ul,
+    .lesson-content ol {
       margin-bottom: 20px;
       font-size: 16px;
       line-height: 1.7;
     }
-
-    .checklist {
-      margin-bottom: 30px;
-      padding-left: 20px;
-    }
-
-    .checklist li {
-      margin-bottom: 12px;
-      font-size: 16px;
-    }
-
-    .button-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 20px;
-      margin-top: 40px;
-    }
-
-    .nav-button {
-      background-color: #006747;
-      color: white;
-      border: none;
-      padding: 12px 24px;
-      font-size: 16px;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-
-    .nav-button:hover {
-      background-color: #00553c;
-    }
-
-    .module-list li:hover {
-      transform: translateX(4px);
-      transition: transform 0.2s ease;
-    }
-
-    .module-list li.active {
-      color: #c1a72e;
-      font-weight: bold;
-    }
-
-    .main {
-      flex-grow: 1;
-      transition: margin-left 0.3s ease;
-    }
-
-    .custom-list {
+    .lesson-content ul {
+      list-style-type: disc;
       margin-left: 40px;
-      padding-left: 0;
-      list-style-type: decimal;
+    }
+    .lesson-content ol {
+      margin-left: 20px;
+    }
+    .lesson-content a {
+      color: #006747;
+      text-decoration: none;
+    }
+    .lesson-content a:hover {
+      text-decoration: underline;
+    }
+    /* Quiz styling */
+    .quiz-container {
+      min-width: 800px;
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 30px 60px 30px 30px;
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+      font-family: "Segoe UI", sans-serif;
     }
 
-    .custom-list > li {
+    .quiz-question {
+      margin-bottom: 40px;
+    }
+
+    .quiz-question p {
+      font-weight: 600;
+      color: #006747;
+      font-size: 20px;
       margin-bottom: 20px;
     }
 
-    .custom-list ul {
-      list-style-type: disc;
-      margin-top: 6px;
-      margin-left: 20px;
-      padding-left: 20px;
+    .quiz-question ul {
+      list-style: none;
+      padding: 0;
+      width: 100%;
     }
 
-    .custom-list ul li {
-      margin-bottom: 10px;
+    .quiz-question li {
+      padding: 15px 20px;
+      background-color: #ffffff;
+      margin-bottom: 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.2s;
+      width: 100%;
+      border: 1px solid #e0e0e0;
+    }
+
+    .quiz-question li:hover {
+      background-color: #f0f5f2;
+      transform: translateX(4px);
+      border-color: #d2e6dc;
+    }
+
+    .quiz-question li.correct {
+      background-color: #c8f5d0;
+      border-left: 6px solid #28a745;
+      border-color: #28a745;
+    }
+
+    .quiz-question li.incorrect {
+      background-color: #ffe2e2;
+      border-left: 6px solid #dc3545;
+      border-color: #dc3545;
+    }
+
+    .explanation {
+      display: none;
+      margin-top: 10px;
+      background-color: #e8f7ed;
+      padding: 10px 15px;
+      border-left: 4px solid #006747;
+      border-radius: 6px;
+      font-size: 14px;
+      animation: fadein-e 1s ease-in-out;
+    }
+
+    @keyframes fadein-e {
+      from {
+        opacity: 0;
+        transform: translateY(6px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .submit-btn {
+      padding: 10px 20px;
+      background-color: #006747;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+    .submit-btn:hover {
+      background-color: #00553c;
     }
   </style>
 </head>
-
 <body>
   <!-- Sidebar -->
   <aside class="sidebar" id="sidebar">
@@ -308,97 +319,188 @@
     </div>
     <div class="sidebar-section-title">MODULES</div>
     <ul class="module-list">
-      <li onclick="window.location.href='module-i.html';">Module I: Introduction to AI and Importance of Verification</li>
-      <li onclick="window.location.href='module-ii.html';">Module II: Learning Objectives</li>
-      <li onclick="window.location.href='module-1.html';">Module 1: Accuracy and Reliability</li>
-      <li onclick="window.location.href='module-2.html';">Module 2: Bias Detection</li>
-      <li onclick="window.location.href='module-3.html';">Module 3: Data Privacy Protection</li>
-      <li onclick="window.location.href='module-4.html';">Module 4: Ethical Considerations</li>
-      <li onclick="window.location.href='module-5.html';">Module 5: Transparency and Accountability</li>
-      <li onclick="window.location.href='module-6.html';">Module 6: Maintaining Academic Integrity</li>
-      <li class="active" onclick="window.location.href='module-7.html';">Module 7: Optimizing Learning Outcomes</li>
-      <li onclick="window.location.href='module-8.html';">Module 8: Resources/References and Conclusion</li>
+      <li onclick="window.location.href='module-i.html';">
+        Module I: Introduction to AI and Importance of Verification
+      </li>
+      <li onclick="window.location.href='module-ii.html';">
+        Module II: Learning Objectives
+      </li>
+      <li onclick="window.location.href='module-1.html';">
+        Module 1: Accuracy and Reliability
+      </li>
+      <li onclick="window.location.href='module-2.html';">
+        Module 2: Bias Detection
+      </li>
+      <li onclick="window.location.href='module-3.html';">
+        Module 3: Data Privacy Protection
+      </li>
+      <li onclick="window.location.href='module-4.html';">
+        Module 4: Ethical Considerations
+      </li>
+      <li onclick="window.location.href='module-5.html';">
+        Module 5: Transparency and Accountability
+      </li>
+      <li onclick="window.location.href='module-6.html';">
+        Module 6: Maintaining Academic Integrity
+      </li>
+      <li class="active" onclick="window.location.href='module-7.html';">
+        Module 7: Optimizing Learning Outcomes
+      </li>
+      <li onclick="window.location.href='module-8.html';">
+        Module 8: Resources/References and Conclusion
+      </li>
     </ul>
   </aside>
-
+  
   <!-- Main Content -->
   <div class="main">
-    <!-- Progress Bar -->
     <div class="progress-bar">
-      <div class="progress" id="progress-bar-fill"></div>
+      <div class="progress" id="progress-bar-fill" style="width:70%;"></div>
     </div>
-
     <header class="topbar">
       <div class="module-label">Module 7</div>
       <div class="nav-icons">
-        <span>80%</span>
+        <span>70%</span>
         <span class="nav-back-btn" onclick="window.location.href='module-6.html';"></span>
         <span class="nav-next-btn" onclick="window.location.href='module-8.html';"></span>
       </div>
     </header>
-
+  
     <!-- Lesson Content -->
     <main class="lesson-content">
       <h1>Optimizing Learning Outcomes</h1>
+      <img src="https://elearningindustry.com/wp-content/uploads/2024/03/Cognitive-Load-Demystified-Optimizing-Learning-With-Cognitive-Science.jpg" alt="Module 7 Image" style="width:780px; height:auto; padding: 20px 0;">
+      
+      <h2>Understanding AI as a Learning Tool</h2>
+      <p>
+        AI is a powerful educational tool that can enhance your learning experience when used effectively. It can assist with homework, research, and understanding complex concepts by providing 24/7 support for your academic needs.
+      </p>
 
-      <p>🎯 Alright, let's talk real talk: AI isn't just some futuristic robot in a sci-fi movie. It's more like a super-smart study buddy who's ready 24/7 to help you crush homework, research, and even those "wait, what??" moments in class.</p>
-
-      <p>💡 Think of it like this—AI is your academic cheat code, but legit. It won't do the work for you (sorry 😅), but it will help you learn faster, get organized, and solve problems like a pro—if you know how to use it right.</p>
-
+      <p>
+        When used properly, AI can help you learn more efficiently, improve your organization skills, and develop better problem-solving abilities. The key is understanding how to utilize these tools appropriately.
+      </p>
+      
+      <h2>Key Strategies for Effective AI Use</h2>
       <ol class="custom-list">
         <li>
-          🗣️ Prompting Power = Talking to AI like a pro
+          Effective Prompting Techniques
           <ul>
-            <li>You gotta treat AI like your personal Google, but way smarter—and with a personality.</li>
-            <li>❌ Bad prompt: "What's photosynthesis?"</li>
-            <li>✅ Good prompt: "Can you explain photosynthesis like I'm in 9th grade, and use emojis and short sentences to help me get it fast?"</li>
-            <li>🌟 Even better prompt: "I have a science quiz tomorrow on photosynthesis. Can you give me 3 things I NEED to remember, and 3 practice questions?"</li>
+            <li>Treat AI as an intelligent assistant that responds best to clear, specific instructions</li>
+            <li>Example of a basic prompt: "What is photosynthesis?"</li>
+            <li>Better prompt: "Explain photosynthesis at a high school level, focusing on the key processes and outcomes"</li>
+            <li>Optimal prompt: "I'm preparing for a science quiz on photosynthesis. Please provide the three most important concepts and three practice questions to test my understanding"</li>
           </ul>
         </li>
         <li>
-          ⚡ Productivity Boosters = AI = Study MVP
+          Productivity Enhancement Strategies
           <ul>
-            <li>AI can help you organize your life like a digital planner that actually listens.</li>
-            <li>📝 Examples:</li>
-            <li>Summarize notes: Copy-paste a long science article into ChatGPT and say, "Summarize this in 5 bullet points I can use for my poster project."</li>
-            <li>🎴 Flashcard magic: "Make flashcards about the parts of the cell with definitions on one side and pictures on the other."</li>
-            <li>📚 Time-saving study guides: "Create a study guide for my history test on World War II. Include important dates and reasons why the war started."</li>
+            <li>Use AI to organize and streamline your learning process</li>
+            <li>Effective Applications:</li>
+            <li>Note Summarization: Convert lengthy articles into concise, actionable bullet points for projects</li>
+            <li>Study Aid Creation: Generate comprehensive flashcards with definitions and key concepts</li>
+            <li>Study Guide Development: Create structured study guides for specific topics with key dates and concepts</li>
           </ul>
         </li>
         <li>
-          🔍 Smart Searching = Find what you actually need
+          Strategic Information Retrieval
           <ul>
-            <li>AI is like a GPS for your brain—you tell it where you're lost, and it helps you find the right path.</li>
-            <li>🎯 Examples:</li>
-            <li>Fill knowledge gaps: "I understand what DNA is, but I'm confused about how it replicates. Can you explain that part only?"</li>
-            <li>📝 Follow-up learning: "Give me a list of questions I should be able to answer about mitosis to know if I really understand it."</li>
-            <li>💡 Help with weird stuff: "I need to write a short story for English class that includes a twist ending. Can you give me 3 plot ideas?"</li>
+            <li>Use AI to target specific areas of confusion or knowledge gaps</li>
+            <li>Practical Applications:</li>
+            <li>Concept Clarification: Request focused explanations for specific topics you find challenging</li>
+            <li>Understanding Assessment: Generate self-assessment questions to test comprehension</li>
+            <li>Creative Support: Get structured assistance for creative assignments while maintaining originality</li>
           </ul>
         </li>
       </ol>
+      
+      <h2>Best Practices for AI-Enhanced Learning</h2>
+      <ul>
+        <li>Always verify AI-generated information with reliable sources</li>
+        <li>Use AI as a supplement to, not a replacement for, traditional learning methods</li>
+        <li>Practice critical thinking when reviewing AI responses</li>
+        <li>Maintain academic integrity by properly citing AI assistance when required</li>
+      </ul>
+      
+     
+      
+      <!-- Quiz -->
+      <div class="quiz-container">
+        <h2>Quiz: Accuracy & Reliability</h2>
 
-      <div class="button-container">
-        <button class="nav-button" onclick="window.location.href='module-6.html';">← Back</button>
-        <button class="nav-button" onclick="window.location.href='module-8.html';">Next →</button>
+        <div class="quiz-question" data-correct="A">
+          <p>1. What does it mean to be accurate and reliable?</p>
+          <ul>
+            <li data-answer="A">A) Information is correct, precise, and consistent over time.</li>
+            <li data-answer="B">B) Information is based on opinions rather than facts.</li>
+            <li data-answer="C">C) Information is always generated by AI, so it must be true.</li>
+            <li data-answer="D">D) Information is useful but does not need to be checked for errors.</li>
+          </ul>
+          <div class="explanation">Accuracy means being correct and precise. Reliability refers to being consistent over time and across sources.</div>
+        </div>
+
+        <div class="quiz-question" data-correct="B">
+          <p>2. Which of these is a trusted source for verifying AI medical information?</p>
+          <ul>
+            <li data-answer="A">A) A random TikTok video</li>
+            <li data-answer="B">B) The World Health Organization (WHO)</li>
+            <li data-answer="C">C) A personal blog</li>
+            <li data-answer="D">D) A Reddit post</li>
+          </ul>
+          <div class="explanation">Trusted sources include institutions like WHO, CDC, or published medical research.</div>
+        </div>
+
+        <div class="quiz-question" data-correct="C">
+          <p>3. What should you do if AI gives a surprising medical fact?</p>
+          <ul>
+            <li data-answer="A">A) Accept it as true</li>
+            <li data-answer="B">B) Share it on social media immediately</li>
+            <li data-answer="C">C) Verify it with multiple trusted sources</li>
+            <li data-answer="D">D) Ask AI the same question again</li>
+          </ul>
+          <div class="explanation">Always verify surprising or medical claims with multiple credible sources before accepting or sharing.</div>
+        </div>
       </div>
+      
+      
     </main>
   </div>
-
+  
   <script>
-    const collapseBtn = document.getElementById('collapseBtn');
-    const sidebar = document.getElementById('sidebar');
+    // Quiz functionality
+    document.querySelectorAll(".quiz-question ul").forEach((ul) => {
+      ul.addEventListener("click", function (e) {
+        if (e.target.tagName === "LI" && !ul.classList.contains("answered")) {
+          const selected = e.target;
+          const parent = ul.closest(".quiz-question");
+          const correctAnswer = parent.getAttribute("data-correct");
 
-    collapseBtn.addEventListener('click', () => {
+          ul.classList.add("answered");
+
+          // Apply classes
+          selected.classList.add(
+            selected.getAttribute("data-answer") === correctAnswer ? "correct" : "incorrect"
+          );
+
+          // Highlight correct answer
+          ul.querySelectorAll("li").forEach((li) => {
+            if (li.getAttribute("data-answer") === correctAnswer) {
+              li.classList.add("correct");
+            }
+            li.style.pointerEvents = "none";
+          });
+
+          // Show explanation
+          parent.querySelector(".explanation").style.display = "block";
+        }
+      });
+    });
+    
+    // Sidebar collapse functionality
+    var collapseBtn = document.getElementById('collapseBtn');
+    var sidebar = document.getElementById('sidebar');
+    collapseBtn.addEventListener('click', function(){
       sidebar.classList.toggle('collapsed');
-      collapseBtn.textContent = sidebar.classList.contains('collapsed') ? '»' : '«';
     });
   </script>
-  <script>
-    const totalModules = 10;
-    const currentModule = 7;
-    const progressPercent = (currentModule / totalModules) * 100;
-    document.getElementById("progress-bar-fill").style.width = progressPercent + "%";
-  </script>
 </body>
-
-</html> 
+</html>

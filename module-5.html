@@ -218,47 +218,82 @@
     }
     /* Quiz styling */
     .quiz-container {
-      background: #f0f5f2;
-      padding: 20px;
-      border-radius: 8px;
+      min-width: 800px;
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 30px 60px 30px 30px;
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+      font-family: "Segoe UI", sans-serif;
+    }
+
+    .quiz-question {
       margin-bottom: 40px;
     }
-    .quiz-question {
+
+    .quiz-question p {
+      font-weight: 600;
+      color: #006747;
+      font-size: 20px;
       margin-bottom: 20px;
     }
-    .quiz-question p {
-      font-weight: bold;
-      margin-bottom: 10px;
+
+    .quiz-question ul {
+      list-style: none;
+      padding: 0;
+      width: 100%;
     }
-    .quiz-options label {
-      display: block;
-      padding: 8px;
-      margin-bottom: 5px;
+
+    .quiz-question li {
+      padding: 15px 20px;
+      background-color: #ffffff;
+      margin-bottom: 12px;
+      border-radius: 8px;
       cursor: pointer;
-      background-color: #fff;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      transition: background-color 0.3s;
+      transition: background-color 0.3s, transform 0.2s;
+      width: 100%;
+      border: 1px solid #e0e0e0;
     }
-    .quiz-options label:hover {
-      background-color: #e9f2ec;
+
+    .quiz-question li:hover {
+      background-color: #f0f5f2;
+      transform: translateX(4px);
+      border-color: #d2e6dc;
     }
-    .quiz-result {
-      margin-top: 20px;
-      padding: 10px;
-      border-radius: 4px;
-      font-weight: bold;
-      display: none;
-    }
-    .quiz-result.correct {
+
+    .quiz-question li.correct {
       background-color: #c8f5d0;
-      color: #2d662d;
-      border: 1px solid #28a745;
+      border-left: 6px solid #28a745;
+      border-color: #28a745;
     }
-    .quiz-result.incorrect {
+
+    .quiz-question li.incorrect {
       background-color: #ffe2e2;
-      color: #a12d2d;
-      border: 1px solid #dc3545;
+      border-left: 6px solid #dc3545;
+      border-color: #dc3545;
+    }
+
+    .explanation {
+      display: none;
+      margin-top: 10px;
+      background-color: #e8f7ed;
+      padding: 10px 15px;
+      border-left: 4px solid #006747;
+      border-radius: 6px;
+      font-size: 14px;
+      animation: fadein-e 1s ease-in-out;
+    }
+
+    @keyframes fadein-e {
+      from {
+        opacity: 0;
+        transform: translateY(6px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
     .submit-btn {
       padding: 10px 20px;
@@ -334,6 +369,7 @@
     <!-- Lesson Content -->
     <main class="lesson-content">
       <h1>Transparency and Accountability</h1>
+      <img src="https://infolks.info/blog/wp-content/uploads/2021/05/explainablecover-1024x576.jpeg" alt="Module 5 Image" style="width:780px; height:auto; padding: 20px 0;">
       
       <h2>What Is Transparency and Accountability in AI?</h2>
       <p>
@@ -409,72 +445,44 @@
         AI can be incredible, but only when used with transparency and accountability. Understand how it works, verify its outputs, and take responsibility for its use. Remember: AI is a tool, not an expert.
       </p>
       
-      <div class="button-container">
-        <button class="nav-button" onclick="window.location.href='module-4.html';">← Back</button>
-        <button class="nav-button" onclick="window.location.href='module-6.html';">Next →</button>
-      </div>
+    
       
-      <!-- Interactive Quiz -->
-      <h2>Quiz: Check Your Understanding</h2>
+      <!-- Quiz -->
       <div class="quiz-container">
-        <form id="quiz-form">
-          <!-- Question 1 -->
-          <div class="quiz-question">
-            <p>1. What is transparency in AI?</p>
-            <div class="quiz-options">
-              <label>
-                <input type="radio" name="q1" value="A" /> A) Keeping AI tools hidden from users
-              </label>
-              <label>
-                <input type="radio" name="q1" value="B" /> B) Making AI fun to use
-              </label>
-              <label>
-                <input type="radio" name="q1" value="C" /> C) Being clear about how AI works and where it gets its information
-              </label>
-              <label>
-                <input type="radio" name="q1" value="D" /> D) Using complicated language to sound smart
-              </label>
-            </div>
-          </div>
-          <!-- Question 2 -->
-          <div class="quiz-question">
-            <p>2. What does accountability in AI mean?</p>
-            <div class="quiz-options">
-              <label>
-                <input type="radio" name="q2" value="A" /> A) Making AI responsible for its own actions
-              </label>
-              <label>
-                <input type="radio" name="q2" value="B" /> B) Knowing who is responsible for reviewing and fixing AI mistakes
-              </label>
-              <label>
-                <input type="radio" name="q2" value="C" /> C) Ignoring errors in AI responses
-              </label>
-              <label>
-                <input type="radio" name="q2" value="D" /> D) Letting AI run without supervision
-              </label>
-            </div>
-          </div>
-          <!-- Question 3 -->
-          <div class="quiz-question">
-            <p>3. Why is verifying AI-generated information important?</p>
-            <div class="quiz-options">
-              <label>
-                <input type="radio" name="q3" value="A" /> A) To see if the AI is smart enough
-              </label>
-              <label>
-                <input type="radio" name="q3" value="B" /> B) To check spelling
-              </label>
-              <label>
-                <input type="radio" name="q3" value="C" /> C) To ensure the information is accurate, up-to-date, and trustworthy
-              </label>
-              <label>
-                <input type="radio" name="q3" value="D" /> D) To copy it faster
-              </label>
-            </div>
-          </div>
-          <button type="button" class="submit-btn" onclick="submitQuiz()">Submit Quiz</button>
-        </form>
-        <div id="quiz-results"></div>
+        <h2>Quiz: Transparency and Accountability</h2>
+
+        <div class="quiz-question" data-correct="C">
+          <p>1. What is transparency in AI?</p>
+          <ul>
+            <li data-answer="A">A) Keeping AI tools hidden from users</li>
+            <li data-answer="B">B) Making AI fun to use</li>
+            <li data-answer="C">C) Being clear about how AI works and where it gets its information</li>
+            <li data-answer="D">D) Using complicated language to sound smart</li>
+          </ul>
+          <div class="explanation">Transparency means being open and honest about how AI works, including its sources, training methods, and limitations.</div>
+        </div>
+
+        <div class="quiz-question" data-correct="B">
+          <p>2. What does accountability in AI mean?</p>
+          <ul>
+            <li data-answer="A">A) Making AI responsible for its own actions</li>
+            <li data-answer="B">B) Knowing who is responsible for reviewing and fixing AI mistakes</li>
+            <li data-answer="C">C) Ignoring errors in AI responses</li>
+            <li data-answer="D">D) Letting AI run without supervision</li>
+          </ul>
+          <div class="explanation">Accountability means humans take responsibility for reviewing AI outputs and correcting any mistakes.</div>
+        </div>
+
+        <div class="quiz-question" data-correct="C">
+          <p>3. Why is verifying AI-generated information important?</p>
+          <ul>
+            <li data-answer="A">A) To see if the AI is smart enough</li>
+            <li data-answer="B">B) To check spelling</li>
+            <li data-answer="C">C) To ensure the information is accurate, up-to-date, and trustworthy</li>
+            <li data-answer="D">D) To copy it faster</li>
+          </ul>
+          <div class="explanation">Verification is crucial to ensure AI-generated information is reliable, especially for health and scientific topics.</div>
+        </div>
       </div>
       
       <h2>Online Resources and External Links</h2>
@@ -497,38 +505,33 @@
   
   <script>
     // Quiz functionality
-    function submitQuiz() {
-      // Define correct answers
-      const answers = { q1: 'C', q2: 'B', q3: 'C' };
-      
-      // Initialize result messages
-      let score = 0;
-      let feedback = '';
-      
-      // Check each question
-      for (let question in answers) {
-        const selected = document.querySelector('input[name="' + question + '"]:checked');
-        if (selected) {
-          if (selected.value === answers[question]) {
-            score++;
-            feedback += '<p class="quiz-result correct">Question ' + question.slice(1) + ': Correct!</p>';
-          } else {
-            feedback += '<p class="quiz-result incorrect">Question ' + question.slice(1) + ': Incorrect. The correct answer is option ' + answers[question] + '.</p>';
-          }
-        } else {
-          feedback += '<p class="quiz-result incorrect">Question ' + question.slice(1) + ': No answer selected. The correct answer is option ' + answers[question] + '.</p>';
+    document.querySelectorAll(".quiz-question ul").forEach((ul) => {
+      ul.addEventListener("click", function (e) {
+        if (e.target.tagName === "LI" && !ul.classList.contains("answered")) {
+          const selected = e.target;
+          const parent = ul.closest(".quiz-question");
+          const correctAnswer = parent.getAttribute("data-correct");
+
+          ul.classList.add("answered");
+
+          // Apply classes
+          selected.classList.add(
+            selected.getAttribute("data-answer") === correctAnswer ? "correct" : "incorrect"
+          );
+
+          // Highlight correct answer
+          ul.querySelectorAll("li").forEach((li) => {
+            if (li.getAttribute("data-answer") === correctAnswer) {
+              li.classList.add("correct");
+            }
+            li.style.pointerEvents = "none";
+          });
+
+          // Show explanation
+          parent.querySelector(".explanation").style.display = "block";
         }
-      }
-      
-      // Display feedback
-      const resultsDiv = document.getElementById('quiz-results');
-      resultsDiv.innerHTML = feedback;
-      // Make feedback visible
-      const resultElements = document.querySelectorAll('.quiz-result');
-      resultElements.forEach(function(el) {
-        el.style.display = 'block';
       });
-    }
+    });
     
     // Sidebar collapse functionality
     var collapseBtn = document.getElementById('collapseBtn');
