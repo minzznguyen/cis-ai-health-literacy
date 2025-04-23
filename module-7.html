@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,20 +11,23 @@
       margin: 0;
       padding: 0;
     }
+
     html,
     body {
       font-family: 'Segoe UI', sans-serif;
       background-color: #f7f7f7;
       color: #333;
     }
+
     body {
       display: flex;
       flex-direction: row;
     }
+
     .sidebar {
       background-color: #006747;
       box-sizing: border-box;
-      box-shadow: 4px 0 6px rgba(0,0,0,0.1);
+      box-shadow: 4px 0 6px rgba(0, 0, 0, 0.1);
       color: #CFC493;
       width: 260px;
       height: 100vh;
@@ -36,10 +40,12 @@
       position: sticky;
       transition: width 0.3s ease, padding 0.3s ease;
     }
+
     .sidebar.collapsed {
       width: 60px;
       padding: 25px 15px;
     }
+
     .sidebar-header {
       display: flex;
       justify-content: space-between;
@@ -48,6 +54,7 @@
       font-weight: bold;
       margin-bottom: 15px;
     }
+
     .sidebar-title,
     .sidebar-section-title,
     .module-list li {
@@ -55,12 +62,14 @@
       max-height: 100px;
       overflow: hidden;
     }
+
     .sidebar.collapsed .sidebar-title,
     .sidebar.collapsed .sidebar-section-title,
     .sidebar.collapsed .module-list li {
       opacity: 0;
       max-height: 0;
     }
+
     .collapse-icon {
       font-size: 28px;
       cursor: pointer;
@@ -68,28 +77,34 @@
       margin-left: 5px;
       transition: all 0.3s ease;
     }
+
     .sidebar.collapsed .sidebar-header {
       justify-content: center;
     }
+
     .sidebar.collapsed .collapse-icon {
       padding-left: 20px;
       margin-left: 0;
       font-size: 28px;
     }
+
     .sidebar-header .sidebar-title {
       flex-grow: 1;
       margin-left: 0;
     }
+
     .sidebar-section-title {
       font-size: 16px;
       letter-spacing: 1px;
       font-weight: bold;
       margin-bottom: 15px;
     }
+
     .module-list {
       list-style: none;
       padding-left: 0;
     }
+
     .module-list li {
       cursor: pointer;
       font-size: 14px;
@@ -99,18 +114,22 @@
       padding: 8px 1px;
       border-radius: 6px;
     }
+
     .module-list li:hover {
       transform: translateX(4px);
       transition: transform 0.2s ease;
     }
+
     .module-list li.active {
       color: #c1a72e;
       font-weight: bold;
     }
+
     .main {
       flex-grow: 1;
       transition: margin-left 0.3s ease;
     }
+
     .progress-bar {
       background-color: #eee;
       position: sticky;
@@ -119,14 +138,16 @@
       width: 100%;
       z-index: 10;
     }
+
     .progress {
       background-color: #c1a72e;
       height: 100%;
     }
+
     .topbar {
       background-color: #f7f7f7;
       border-bottom: 1px solid #ddd;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       padding: 10px 30px;
       position: sticky;
       top: 8px;
@@ -135,6 +156,7 @@
       justify-content: space-between;
       align-items: center;
     }
+
     .module-label {
       font-size: 25px;
       font-weight: bold;
@@ -142,15 +164,18 @@
       flex: 1;
       animation: fadein 2s;
     }
+
     .nav-icons {
       display: flex;
       align-items: center;
     }
+
     .nav-icons span {
       margin-left: 15px;
       font-size: 20px;
       cursor: pointer;
     }
+
     .nav-back-btn {
       display: inline-block;
       width: 15px;
@@ -160,6 +185,7 @@
       background-repeat: no-repeat;
       cursor: pointer;
     }
+
     .nav-next-btn {
       display: inline-block;
       width: 15px;
@@ -169,6 +195,7 @@
       background-repeat: no-repeat;
       cursor: pointer;
     }
+
     .lesson-content {
       padding: 40px 80px;
       max-width: 1000px;
@@ -178,10 +205,17 @@
       flex-direction: column;
       animation: fadein 2s;
     }
+
     @keyframes fadein {
-      from { opacity: 0; }
-      to { opacity: 1; }
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
     }
+
     .lesson-content h1 {
       font-size: 30px;
       margin-bottom: 25px;
@@ -189,12 +223,14 @@
       line-height: 1.4;
       text-align: center;
     }
+
     .lesson-content h2 {
       margin-top: 25px;
       margin-bottom: 15px;
       font-size: 22px;
       font-weight: bold;
     }
+
     .lesson-content p,
     .lesson-content ul,
     .lesson-content ol {
@@ -202,21 +238,56 @@
       font-size: 16px;
       line-height: 1.7;
     }
+
     .lesson-content ul {
       list-style-type: disc;
       margin-left: 40px;
     }
+
     .lesson-content ol {
       margin-left: 20px;
     }
+
     .lesson-content a {
       color: #006747;
       text-decoration: none;
     }
+
     .lesson-content a:hover {
       text-decoration: underline;
     }
-    /* Quiz styling */
+
+    .lesson-content img {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /*  Navigation Buttons on Bottom  */
+    .button-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      /* space between buttons */
+      margin-top: 40px;
+    }
+
+    .nav-button {
+      background-color: #006747;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .nav-button:hover {
+      background-color: #00553c;
+    }
+
+    /*  Quiz  */
     .quiz-container {
       min-width: 800px;
       max-width: 1000px;
@@ -235,43 +306,36 @@
     .quiz-question p {
       font-weight: 600;
       color: #006747;
-      font-size: 20px;
-      margin-bottom: 20px;
+      font-size: 18px;
     }
 
     .quiz-question ul {
       list-style: none;
       padding: 0;
-      width: 100%;
     }
 
     .quiz-question li {
-      padding: 15px 20px;
-      background-color: #ffffff;
-      margin-bottom: 12px;
+      padding: 12px 16px;
+      background-color: #f0f5f2;
+      margin-bottom: 10px;
       border-radius: 8px;
       cursor: pointer;
       transition: background-color 0.3s, transform 0.2s;
-      width: 100%;
-      border: 1px solid #e0e0e0;
     }
 
     .quiz-question li:hover {
-      background-color: #f0f5f2;
+      background-color: #d2e6dc;
       transform: translateX(4px);
-      border-color: #d2e6dc;
     }
 
     .quiz-question li.correct {
       background-color: #c8f5d0;
       border-left: 6px solid #28a745;
-      border-color: #28a745;
     }
 
     .quiz-question li.incorrect {
       background-color: #ffe2e2;
       border-left: 6px solid #dc3545;
-      border-color: #dc3545;
     }
 
     .explanation {
@@ -290,26 +354,15 @@
         opacity: 0;
         transform: translateY(6px);
       }
+
       to {
         opacity: 1;
         transform: translateY(0);
       }
     }
-    .submit-btn {
-      padding: 10px 20px;
-      background-color: #006747;
-      color: #fff;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 16px;
-      margin-top: 10px;
-    }
-    .submit-btn:hover {
-      background-color: #00553c;
-    }
   </style>
 </head>
+
 <body>
   <!-- Sidebar -->
   <aside class="sidebar" id="sidebar">
@@ -351,35 +404,39 @@
       </li>
     </ul>
   </aside>
-  
+
   <!-- Main Content -->
   <div class="main">
     <div class="progress-bar">
-      <div class="progress" id="progress-bar-fill" style="width:70%;"></div>
+      <div class="progress" id="progress-bar-fill"></div>
     </div>
     <header class="topbar">
       <div class="module-label">Module 7</div>
       <div class="nav-icons">
-        <span>70%</span>
+        <span>90%</span>
         <span class="nav-back-btn" onclick="window.location.href='module-6.html';"></span>
         <span class="nav-next-btn" onclick="window.location.href='module-8.html';"></span>
       </div>
     </header>
-  
+
     <!-- Lesson Content -->
     <main class="lesson-content">
       <h1>Optimizing Learning Outcomes</h1>
-      <img src="https://elearningindustry.com/wp-content/uploads/2024/03/Cognitive-Load-Demystified-Optimizing-Learning-With-Cognitive-Science.jpg" alt="Module 7 Image" style="width:780px; height:auto; padding: 20px 0;">
-      
+      <img
+        src="https://elearningindustry.com/wp-content/uploads/2024/03/Cognitive-Load-Demystified-Optimizing-Learning-With-Cognitive-Science.jpg"
+        alt="Module 7 Image" style="width:700px; height:auto;">
+
       <h2>Understanding AI as a Learning Tool</h2>
       <p>
-        AI is a powerful educational tool that can enhance your learning experience when used effectively. It can assist with homework, research, and understanding complex concepts by providing 24/7 support for your academic needs.
+        AI is a powerful educational tool that can enhance your learning experience when used effectively. It can assist
+        with homework, research, and understanding complex concepts by providing 24/7 support for your academic needs.
       </p>
 
       <p>
-        When used properly, AI can help you learn more efficiently, improve your organization skills, and develop better problem-solving abilities. The key is understanding how to utilize these tools appropriately.
+        When used properly, AI can help you learn more efficiently, improve your organization skills, and develop better
+        problem-solving abilities. The key is understanding how to utilize these tools appropriately.
       </p>
-      
+
       <h2>Key Strategies for Effective AI Use</h2>
       <ol class="custom-list">
         <li>
@@ -387,8 +444,10 @@
           <ul>
             <li>Treat AI as an intelligent assistant that responds best to clear, specific instructions</li>
             <li>Example of a basic prompt: "What is photosynthesis?"</li>
-            <li>Better prompt: "Explain photosynthesis at a high school level, focusing on the key processes and outcomes"</li>
-            <li>Optimal prompt: "I'm preparing for a science quiz on photosynthesis. Please provide the three most important concepts and three practice questions to test my understanding"</li>
+            <li>Better prompt: "Explain photosynthesis at a high school level, focusing on the key processes and
+              outcomes"</li>
+            <li>Optimal prompt: "I'm preparing for a science quiz on photosynthesis. Please provide the three most
+              important concepts and three practice questions to test my understanding"</li>
           </ul>
         </li>
         <li>
@@ -398,7 +457,8 @@
             <li>Effective Applications:</li>
             <li>Note Summarization: Convert lengthy articles into concise, actionable bullet points for projects</li>
             <li>Study Aid Creation: Generate comprehensive flashcards with definitions and key concepts</li>
-            <li>Study Guide Development: Create structured study guides for specific topics with key dates and concepts</li>
+            <li>Study Guide Development: Create structured study guides for specific topics with key dates and concepts
+            </li>
           </ul>
         </li>
         <li>
@@ -412,7 +472,7 @@
           </ul>
         </li>
       </ol>
-      
+
       <h2>Best Practices for AI-Enhanced Learning</h2>
       <ul>
         <li>Always verify AI-generated information with reliable sources</li>
@@ -420,9 +480,9 @@
         <li>Practice critical thinking when reviewing AI responses</li>
         <li>Maintain academic integrity by properly citing AI assistance when required</li>
       </ul>
-      
-     
-      
+
+
+
       <!-- Quiz -->
       <div class="quiz-container">
         <h2>Quiz: Accuracy & Reliability</h2>
@@ -435,7 +495,8 @@
             <li data-answer="C">C) Information is always generated by AI, so it must be true.</li>
             <li data-answer="D">D) Information is useful but does not need to be checked for errors.</li>
           </ul>
-          <div class="explanation">Accuracy means being correct and precise. Reliability refers to being consistent over time and across sources.</div>
+          <div class="explanation">Accuracy means being correct and precise. Reliability refers to being consistent over
+            time and across sources.</div>
         </div>
 
         <div class="quiz-question" data-correct="B">
@@ -446,7 +507,8 @@
             <li data-answer="C">C) A personal blog</li>
             <li data-answer="D">D) A Reddit post</li>
           </ul>
-          <div class="explanation">Trusted sources include institutions like WHO, CDC, or published medical research.</div>
+          <div class="explanation">Trusted sources include institutions like WHO, CDC, or published medical research.
+          </div>
         </div>
 
         <div class="quiz-question" data-correct="C">
@@ -457,30 +519,88 @@
             <li data-answer="C">C) Verify it with multiple trusted sources</li>
             <li data-answer="D">D) Ask AI the same question again</li>
           </ul>
-          <div class="explanation">Always verify surprising or medical claims with multiple credible sources before accepting or sharing.</div>
+          <div class="explanation">Always verify surprising or medical claims with multiple credible sources before
+            accepting or sharing.</div>
         </div>
       </div>
-      
-      
+      <!-- Navigation Button -->
+      <div class="button-container">
+        <button class="nav-button" onclick="window.location.href='module-6.html';">← Back</button>
+        <button class="nav-button" onclick="window.location.href='module-8.html';">Next →</button>
+      </div>
+
     </main>
   </div>
-  
+  <!-- Sidebar Collaspe -->
   <script>
-    // Quiz functionality
+    const collapseBtn = document.getElementById('collapseBtn');
+    const sidebar = document.getElementById('sidebar');
+    collapseBtn.addEventListener('click', () => {
+      sidebar.classList.toggle('collapsed');
+      collapseBtn.textContent = sidebar.classList.contains('collapsed') ? '»' : '«';
+    });
+  </script>
+  <!-- Progress Bar -->
+  <script>
+    const totalModules = 10;
+    const currentModule = 9; // Change this number based on the current module (1 to 10)
+    const progressPercent = (currentModule / totalModules) * 100;
+    document.getElementById("progress-bar-fill").style.width = progressPercent + "%";
+  </script>
+  <!-- ChatBot -->
+  <script>
+    document.getElementById("ask-button").addEventListener("click", function () {
+      const userQuestion = document.getElementById("user-input").value.trim();
+      if (userQuestion) {
+        // Display the user's question with fade-in effect
+        const chatOutput = document.getElementById("chat-output");
+        const userMessage = document.createElement('p');
+        userMessage.classList.add('user-message');
+        userMessage.innerHTML = `<strong>You:</strong> ${userQuestion}`;
+        chatOutput.appendChild(userMessage);
+        // Apply fade-in effect to the user's question
+        userMessage.style.animation = 'fadein 2s forwards';
+        // Clear input field
+        document.getElementById("user-input").value = '';
+        // Scroll chat to the bottom
+        chatOutput.scrollTop = chatOutput.scrollHeight;
+        // Simulate a delay before displaying AI response
+        setTimeout(function () {
+          const aiResponse = getAIResponse(userQuestion);
+          // Display AI response
+          const aiMessage = document.createElement('p');
+          aiMessage.classList.add('ai-message');
+          aiMessage.innerHTML = `<strong>AI:</strong> ${aiResponse}`;
+          chatOutput.appendChild(aiMessage);
+          // Apply fade-in effect to AI response after delay
+          aiMessage.style.animation = 'fadein 2s forwards';
+          // Scroll to the bottom after AI response appears
+          chatOutput.scrollTop = chatOutput.scrollHeight;
+        }, 2000); // Delay of 2 seconds before AI response
+      }
+    });
+    function getAIResponse(question) {
+      // Simulate an AI response based on the input
+      const responses = {
+        "How many bones does the human body have?": "The human body has 270 bones."
+      };
+      // Return a response or a default message
+      return responses[question] || "I'm sorry, I don't have an answer to that. Please verify the information from a reliable source.";
+    }
+  </script>
+  <!-- Quiz -->
+  <script>
     document.querySelectorAll(".quiz-question ul").forEach((ul) => {
       ul.addEventListener("click", function (e) {
         if (e.target.tagName === "LI" && !ul.classList.contains("answered")) {
           const selected = e.target;
           const parent = ul.closest(".quiz-question");
           const correctAnswer = parent.getAttribute("data-correct");
-
           ul.classList.add("answered");
-
           // Apply classes
           selected.classList.add(
             selected.getAttribute("data-answer") === correctAnswer ? "correct" : "incorrect"
           );
-
           // Highlight correct answer
           ul.querySelectorAll("li").forEach((li) => {
             if (li.getAttribute("data-answer") === correctAnswer) {
@@ -488,19 +608,12 @@
             }
             li.style.pointerEvents = "none";
           });
-
           // Show explanation
           parent.querySelector(".explanation").style.display = "block";
         }
       });
     });
-    
-    // Sidebar collapse functionality
-    var collapseBtn = document.getElementById('collapseBtn');
-    var sidebar = document.getElementById('sidebar');
-    collapseBtn.addEventListener('click', function(){
-      sidebar.classList.toggle('collapsed');
-    });
   </script>
 </body>
+
 </html>
