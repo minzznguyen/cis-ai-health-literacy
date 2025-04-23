@@ -268,6 +268,28 @@
       margin-top: 40px;
     }
 
+    .button-container-dashboard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.dash-button {
+   background-color: #CFC493;
+   color: white;
+   border: none;
+   padding: 20px 32px;
+   font-size: 24px;
+   border-radius: 8px;
+   cursor: pointer;
+ }
+
+ .dash-button:hover {
+   background-color: #bdb386;
+ }
+
     .nav-button {
       background-color: #006747;
       color: white;
@@ -405,7 +427,10 @@
       <p>💭 Final thought:</p>
       <p>🤖 AI is here to stay—and you're already learning how to use it with care, confidence, and critical thinking. Whether you're building the next medical breakthrough or just trying to finish your homework, you've got the tools to do it responsibly.</p>
       <p>🌟 Stay curious, stay thoughtful, and keep asking the big questions. You're the future of health and tech. Let's make it a smart one. 🚀</p>
-
+      <p><b>For more trusted and verified resources about medical topics from symptoms to healthcare laws to medical research, click on the dashboard button!</b></p>
+      <div class="button-container-dashboard">
+        <button class="dash-button" onclick="window.location.href='_blank';">Dashboard</button>
+      </div> 
       <div class="button-container">
         <button class="nav-button" onclick="window.location.href='module-7.html';">← Back</button>
         <button class="nav-button" onclick="window.location.href='module-i.html';">Restart Course</button>
