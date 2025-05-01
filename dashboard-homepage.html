@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>USF Health Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f0f4f8;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 30px;
+      background-color: #ffffff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    header h1 {
+      color: #006241;
+    }
+    header input[type="text"] {
+      padding: 0.6rem 1rem;
+      border: none;
+      border-radius: 20px;
+      background-color: #f0f0f0;
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+    header input[type="text"]:focus {
+      outline: none;
+      background-color: #ffffff;
+      box-shadow: 0 0 5px rgba(0, 98, 65, 0.5);
+    }
+    main {
+      padding: 2rem;
+      text-align: center;
+    }
+    h2 {
+      font-size: 30px;
+margin-bottom: 40px;
+font-weight: 600;
+line-height: 1.4;
+text-align: center;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .circle {
+      background-color: #006241;
+      color: white;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 0.5rem;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    .circle:hover {
+      transform: translateY(-5px);
+      background-color: #004d33;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    }
+    .circle.gold {
+      background-color: #d4c087;
+    }
+    .circle.gold:hover {
+      background-color: #b89f66;
+    }
+    .circle.white {
+      background-color: #ffffff;
+      color: #000;
+      border: 1px solid #ccc;
+    }
+    .circle.white:hover {
+      background-color: #e6e6e6;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>USF Health Dashboard</h1>
+    <input type="text" placeholder="Search..." />
+  </header>
+  <main>
+    <h2>Trusted resources to all your medical needs</h2>
+    <div class="grid">
+      <div>
+        <a href="medical-law.html">
+          <div class="circle">LOGO</div>
+          <div>Medical Law</div>
+        </a>
+      </div>
+      <div>
+        <div class="circle white">LOGO</div>
+        <div>Reasearch</div>
+      </div>
+      <div>
+        <div class="circle gold">LOGO</div>
+        <div>Community Health</div>
+      </div>
+      <div>
+        <div class="circle">LOGO</div>
+        <div>Children’s Health</div>
+      </div>
+      <div>
+        <div class="circle white">LOGO</div>
+        <div>Women’s Health</div>
+      </div>
+      <div>
+        <div class="circle gold">LOGO</div>
+        <div>Mental Health</div>
+      </div>
+      <div>
+        <div class="circle">LOGO</div>
+        <div>Licensing</div>
+      </div>
+      <div>
+        <div class="circle white">LOGO</div>
+        <div>Environmental Health</div>
+      </div>
+      <div>
+        <div class="circle gold">LOGO</div>
+        <div>Programs & Services</div>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
