@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Women's Health Resources</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f4f8;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 5px 30px;
+            background-color: #ffffff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            color: #006241;
+        }
+
+
+        main {
+            padding: 2rem;
+            text-align: center;
+            animation: fadein 2s;
+        }
+
+        @keyframes fadein {
+
+            /* Safari and Chrome */
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        h2 {
+            font-size: 40px;
+            margin-bottom: 25px;
+            margin-top: 0px;
+            font-weight: 600;
+            line-height: 1.4;
+            text-align: center;
+        }
+
+        h3 {
+            font-size: 30px;
+            margin-bottom: 25px;
+            font-weight: 600;
+            line-height: 1.4;
+            text-align: center;
+        }
+
+        .image-placeholder {
+            background-color: #d9d9d9;
+            height: 200px;
+            margin: 1rem auto;
+            width: 60%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        ul {
+            list-style-type: disc;
+            text-align: left;
+            max-width: 55%;
+            margin: 2rem auto;
+            line-height: 1.4;
+        }
+
+        ul a {
+            color: #006241;
+        }
+
+        ul li {
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+
+        /*  Navigation Buttons on Bottom  */
+        .button-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            /* space between buttons */
+            margin-top: 40px;
+        }
+
+        .nav-button {
+            background-color: #006747;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .nav-button:hover {
+            background-color: #00553c;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>USF Health Dashboard</h1>
+    </header>
+    <main>
+        <h2>Women's Health</h2>
+        <img src="https://media.istockphoto.com/id/1406896488/vector/side-view-of-multi-ethnic-women-group-with-pink-ribbons-breast-cancer-awareness-and-support.jpg?s=612x612&w=0&k=20&c=OUr4Uc9dAzzk7C-56t65CzoWYXFfSCZpIwvBg7es-ZI="
+            alt="Group of multi ethnic women." style="width:500px; height:auto;">
+        <h3>Trusted resources for topics relating to women's health.</h3>
+        <ul>
+            <li><a href="https://www.cdc.gov/womens-health/index.html" target="_blank"><strong>CDC Women’s
+                        Health</strong></a><br />
+                A central hub highlighting risk factors and conditions that uniquely impact women’s health.
+            </li>
+            <li><a href="https://www.fns.usda.gov/wic" target="_blank"><strong>USDA WIC Program</strong></a><br />
+                A nutrition assistance program supporting the health of low-income pregnant and postpartum women,
+                infants, and young children.
+            </li>
+            <li><a href="https://www.fda.gov/consumers/womens-health" target="_blank"><strong>FDA Office of Women’s
+                        Health</strong></a><br />
+                Offers trustworthy, easy to read health information tailored for women’s needs.
+            </li>
+            <li><a href="https://orwh.od.nih.gov/" target="_blank"><strong>NIH Office of Research of Women’s
+                        Health</strong></a><br />
+                Serves as the focal point for women’s health research at the National Institutes of Health.
+            </li>
+            <li><a href="https://www.acog.org/" target="_blank"><strong>American College of Obstetricians and
+                        Gynecologists (ACOG)</strong></a><br />
+                Offers expert-backed guidance on reproductive health, pregnancy, and preventive care for women.
+            </li>
+            <li><a href="https://www.mayoclinic.org/healthy-lifestyle/womens-health/basics/womens-health/hlv-20049411"
+                    target="_blank"><strong>Mayo Clinic Women’s Health</strong></a><br />
+                Delivers medically reviewed articles and tools focused on conditions and wellness strategies for women.
+            </li>
+        </ul>
+        <!-- Navigation Button -->
+        <div class="button-container">
+            <button class="nav-button" onclick="window.location.href='dashboard-homepage.html';">← Back</button>
+        </div>
+    </main>
+</body>
+
+</html>

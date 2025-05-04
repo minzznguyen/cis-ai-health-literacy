@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Children’s Health Resources</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f4f8;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 5px 30px;
+            background-color: #ffffff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            color: #006241;
+        }
+
+
+        main {
+            padding: 2rem;
+            text-align: center;
+            animation: fadein 2s;
+        }
+
+        @keyframes fadein {
+
+            /* Safari and Chrome */
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        h2 {
+            font-size: 40px;
+            margin-bottom: 25px;
+            margin-top: 0px;
+            font-weight: 600;
+            line-height: 1.4;
+            text-align: center;
+        }
+
+        h3 {
+            font-size: 30px;
+            margin-bottom: 25px;
+            font-weight: 600;
+            line-height: 1.4;
+            text-align: center;
+        }
+
+        ul {
+            list-style-type: disc;
+            text-align: left;
+            max-width: 55%;
+            margin: 2rem auto;
+            line-height: 1.4;
+        }
+        ul a{
+            color: #006241;
+        }
+
+        ul li {
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+
+        /*  Navigation Buttons on Bottom  */
+        .button-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            /* space between buttons */
+            margin-top: 40px;
+        }
+
+        .nav-button {
+            background-color: #006747;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .nav-button:hover {
+            background-color: #00553c;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>USF Health Dashboard</h1>
+    </header>
+    <main>
+        <h2>Children’s Health</h2>
+        <img src="https://media.istockphoto.com/id/1369587134/vector/planned-reception-of-parents-with-children-in-clinic.jpg?s=612x612&w=0&k=20&c=GaFehg4XIZMgDuDXFypXajYPOy1O7ic__CmwZfVFK0I="
+        alt="Family at doctor's office." style="width:600px; height:auto;">
+        <h3>Trusted resources for topics relating to children's health.</h3>
+        <ul>
+            <li><a href="https://www.aap.org/" target="_blank"><strong>American Academy of Pediatrics (AAP)</strong></a><br />
+                A trusted authority offering evidence-based guidance on pediatric care, child development, and preventative health. 
+            </li>
+            <li><a href="https://www.cdc.gov/child-development/index.html" target="_blank"><strong>CDC Child Development and Health</strong></a><br />
+                Provides essential information on children’s growth stages, vaccinations, safety, and health promotion.
+            </li>
+            <li><a href="https://www.healthychildren.org/English/Pages/default.aspx" target="_blank"><strong>AAP: Healthy Children</strong></a><br />
+                A family focused site offering practical health tips, parenting advice and wellness resources for children of all ages.
+            </li>
+            <li><a href="https://www.healthcare.gov/medicaid-chip/childrens-health-insurance-program/" target="_blank"><strong>Children’s Health Insurance Program (CHIP)</strong></a><br />
+                A federal program that provides low-cost health coverage to children in families that earn too much to qualify for Medicaid.
+            </li>
+            <li><a href="https://kidshealth.org/" target="_blank"><strong>Nemours KidsHealth</strong></a><br />
+                Offers child-friendly articles, videos, and educational tools on physical and mental health tailored for kids, teens, and parents.
+            </li>
+            <li><a href="https://mchb.hrsa.gov/" target="_blank"><strong>HRSA Maternal and Child Health Bureau</strong></a><br />
+                Supports national programs that improve the health and well-being of mothers, infants, and children through services and research.
+            </li>
+        </ul>
+        <!-- Navigation Button -->
+        <div class="button-container">
+            <button class="nav-button" onclick="window.location.href='dashboard-homepage.html';">← Back</button>
+        </div>
+    </main>
+</body>
+
+</html>
