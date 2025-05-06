@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programs & Services Resources</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f4f8;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 5px 30px;
+            background-color: #ffffff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            color: #006241;
+        }
+
+
+        main {
+            padding: 2rem;
+            text-align: center;
+            animation: fadein 2s;
+        }
+
+        @keyframes fadein {
+
+            /* Safari and Chrome */
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        h2 {
+            font-size: 40px;
+            margin-bottom: 25px;
+            margin-top: 0px;
+            font-weight: 600;
+            line-height: 1.4;
+            text-align: center;
+        }
+
+        h3 {
+            font-size: 30px;
+            margin-bottom: 25px;
+            font-weight: 600;
+            line-height: 1.4;
+            text-align: center;
+        }
+
+        ul {
+            list-style-type: disc;
+            text-align: left;
+            max-width: 55%;
+            margin: 2rem auto;
+            line-height: 1.4;
+        }
+        ul a{
+            color: #006241;
+        }
+
+        ul li {
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+
+        /*  Navigation Buttons on Bottom  */
+        .button-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            /* space between buttons */
+            margin-top: 40px;
+        }
+
+        .nav-button {
+            background-color: #006747;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .nav-button:hover {
+            background-color: #00553c;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>USF Health Dashboard</h1>
+    </header>
+    <main>
+        <h2>Programs & Services</h2>
+        <img src="https://media.istockphoto.com/id/2168974909/vector/medical-terminology-and-patient-disease-history-writing-outline-hands-concept.jpg?s=612x612&w=0&k=20&c=qjt-iSVUBfyMQ0c6-sf2uEP-61nNVOU8FE1iT41qYlg="
+        alt="Family at doctor's office." style="width:600px; height:auto;">
+        <h3>Trusted resources for topics relating to medical programs and services.</h3>
+        <ul>
+            <li><a href="https://www.cms.gov" target="_blank"><strong>Medicaid & Medicare Services (CMS)</strong></a><br />
+                Federal programs providing health coverage for eligible low-income individuals (Medicaid) and older adults or people with disabilities (Medicare). CMS also regulates healthcare quality standards and reimbursement policies. 
+            </li>
+            <li><a href="https://www.hrsa.gov" target="_blank"><strong>Health Resources and Services Administration (HRSA)</strong></a><br />
+                A U.S. federal agency that provides healthcare to people who are geographically isolated, economically or medically vulnerable. Programs include health centers, maternal and child health, and rural health services.
+            </li>
+            <li><a href="https://www.samhsa.gov" target="_blank"><strong>SAMHSA (Substance Abuse and Mental Health Services Administration)</strong></a><br />
+                Provides support for mental health and substance use disorder treatment, including grants, educational tools, and a national helpline.
+            </li>
+            <li><a href="https://www.nafcclinics.org" target="_blank"><strong>National Association of Free & Charitable Clinics (NAFC)</strong></a><br />
+                Connects people with free or low-cost healthcare providers across the U.S., particularly for uninsured or underinsured patients.
+            </li>
+            <li><a href="https://www.cdc.gov/vaccines/programs/vfc" target="_blank"><strong>Vaccines for Children Program (CDC)</strong></a><br />
+                A federally funded program that provides free vaccines to children who might not otherwise be vaccinated because of inability to pay.
+            </li>
+            <li><a href="https://www.findtreatment.gov" target="_blank"><strong>FindTreatment.gov</strong></a><br />
+                A searchable directory managed by SAMHSA to locate nearby addiction and mental health treatment providers.
+            </li>
+            <li><a href="https://www.fns.usda.gov/wic" target="_blank"><strong>Women, Infants, and Children (WIC)</strong></a><br />
+                A federal assistance program providing nutritious food, education, and healthcare referrals for low-income pregnant women, new mothers, and young children.
+            </li>
+        </ul>
+        <!-- Navigation Button -->
+        <div class="button-container">
+            <button class="nav-button" onclick="window.location.href='dashboard-homepage.html';">← Back</button>
+        </div>
+    </main>
+</body>
+
+</html>
