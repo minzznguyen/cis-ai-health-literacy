@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research Resources</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f4f8;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 5px 30px;
+            background-color: #ffffff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            color: #006241;
+        }
+
+
+        main {
+            padding: 2rem;
+            text-align: center;
+            animation: fadein 2s;
+        }
+
+        @keyframes fadein {
+
+            /* Safari and Chrome */
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        h2 {
+            font-size: 40px;
+            margin-bottom: 25px;
+            margin-top: 0px;
+            font-weight: 600;
+            line-height: 1.4;
+            text-align: center;
+        }
+
+        h3 {
+            font-size: 30px;
+            margin-bottom: 25px;
+            font-weight: 600;
+            line-height: 1.4;
+            text-align: center;
+        }
+
+        ul {
+            list-style-type: disc;
+            text-align: left;
+            max-width: 55%;
+            margin: 2rem auto;
+            line-height: 1.4;
+        }
+
+        ul a {
+            color: #006241;
+        }
+
+        ul li {
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+
+        /*  Navigation Buttons on Bottom  */
+        .button-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            /* space between buttons */
+            margin-top: 40px;
+        }
+
+        .nav-button {
+            background-color: #006747;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .nav-button:hover {
+            background-color: #00553c;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>USF Health Dashboard</h1>
+    </header>
+    <main>
+        <h2>Research</h2>
+        <img src="https://media.post.rvohealth.io/wp-content/uploads/sites/3/2020/02/281283_2200-732x549.jpg"
+            alt="" style="width:500px; height:auto;">
+        <h3>Trusted resources for topics relating to medical research.</h3>
+        <ul>
+            <li><a href="https://pubmed.ncbi.nlm.nih.gov/" target="_blank"><strong>PubMed
+                        </strong></a><br />A free resource developed by the National Library of Medicine that provides
+                access to over 35 million citations for biomedical literature, including research articles, reviews, and clinical studies.
+            </li>
+            <li><a href=" https://www.nih.gov/" target="_blank"><strong>National Institutes of Health (NIH)
+                        </strong></a><br />The U.S. government’s primary medical research agency, funding and publishing cutting-edge 
+                research on health, diseases, treatments, and public health policy.
+            </li>
+            <li><a href="https://www.cdc.gov/" target="_blank"><strong>Centers for Disease Control and Prevention (CDC)
+                        </strong></a><br />The CDC offers up-to-date public health information, disease statistics, and health promotion 
+                research, trusted globally for its evidence-based guidance.
+            </li>
+            <li><a href="https://www.who.int/" target="_blank"><strong>World Health Organization (WHO)
+                        </strong></a><br />A global health authority that publishes international health research, disease surveillance, 
+                policy guidance, and data on health systems and outcomes.
+            </li>
+
+            <li><a href="https://healthdata.gov/" target="_blank"><strong>HealthData.gov
+                        </strong></a><br />An open government platform offering access to high-value health datasets from U.S. federal 
+                agencies for public use and research.
+            </li>
+        </ul>
+        <!-- Navigation Button -->
+        <div class="button-container">
+            <button class="nav-button" onclick="window.location.href='dashboard-homepage.html';">← Back</button>
+        </div>
+    </main>
+</body>
+
+</html>
