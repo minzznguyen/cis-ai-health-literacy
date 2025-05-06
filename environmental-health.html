@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research Resources</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f4f8;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 5px 30px;
+            background-color: #ffffff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            color: #006241;
+        }
+
+
+        main {
+            padding: 2rem;
+            text-align: center;
+            animation: fadein 2s;
+        }
+
+        @keyframes fadein {
+
+            /* Safari and Chrome */
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        h2 {
+            font-size: 40px;
+            margin-bottom: 25px;
+            margin-top: 0px;
+            font-weight: 600;
+            line-height: 1.4;
+            text-align: center;
+        }
+
+        h3 {
+            font-size: 30px;
+            margin-bottom: 25px;
+            font-weight: 600;
+            line-height: 1.4;
+            text-align: center;
+        }
+
+        ul {
+            list-style-type: disc;
+            text-align: left;
+            max-width: 55%;
+            margin: 2rem auto;
+            line-height: 1.4;
+        }
+
+        ul a {
+            color: #006241;
+        }
+
+        ul li {
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+
+        /*  Navigation Buttons on Bottom  */
+        .button-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            /* space between buttons */
+            margin-top: 40px;
+        }
+
+        .nav-button {
+            background-color: #006747;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .nav-button:hover {
+            background-color: #00553c;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>USF Health Dashboard</h1>
+    </header>
+    <main>
+        <h2>Environmental Health</h2>
+        <img src="https://www.ukri.org/wp-content/uploads/2023/11/NERC-09112023-GettyImages-1364679535.jpg"
+            alt="" style="width:500px; height:auto;">
+        <h3>Trusted resources for topics relating to environmental health.</h3>
+        <ul>
+            <li><a href="https://www.epa.gov/environmental-topics" target="_blank"><strong>Environmental Protection Agency (EPA): Environmental Topics
+                        </strong></a><br />The EPA provides data, research, and policy guidance on air quality, water safety, hazardous 
+                waste, and other key environmental health factors.
+            </li>
+            <li><a href="https://www.niehs.nih.gov" target="_blank"><strong>National Institute of Environmental Health Sciences (NIEHS)
+                        </strong></a><br />A branch of the NIH that focuses on research into how environmental exposures impact human health, 
+                including toxins, pollutants, and climate-related risks.
+            </li>
+            <li><a href="https://www.cdc.gov/nceh/tracking" target="_blank"><strong>National Environmental Public Health Tracking Network (CDC)
+                        </strong></a><br />An interactive system from the CDC that tracks environmental hazards and health outcomes across U.S. 
+                communities to identify trends and inform public health action.
+            </li>
+            <li><a href="https://www.who.int/health-topics/environmental-health" target="_blank"><strong>World Health Organization (WHO): Environment and Health
+                        </strong></a><br />WHO offers global research and data on environmental determinants of health, such as air pollution,
+                water sanitation, and climate change.
+            </li>
+            <li><a href="https://www.unep.org" target="_blank"><strong>United Nations Environment Programme (UNEP): Health and Environment 
+                        </strong></a><br />UNEP provides international insights and reports on the intersection of environmental sustainability 
+                and human health, including pollution, biodiversity, and climate effects.
+            </li>
+            <li><a href="https://earthobservatory.nasa.gov" target="_blank"><strong>Earth Observatory (NASA): Health and Air Quality
+                         </strong></a><br />NASA’s Earth Observatory provides satellite-based data and research on global air quality, pollution patterns,
+                and environmental health events like wildfires and dust storms.
+            </li> 
+        </ul>
+        <!-- Navigation Button -->
+        <div class="button-container">
+            <button class="nav-button" onclick="window.location.href='dashboard-homepage.html';">← Back</button>
+        </div>
+    </main>
+</body>
+
+</html>
