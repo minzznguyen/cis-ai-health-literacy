@@ -621,7 +621,7 @@
 
             <p>Let's test out what a biased answer would look like from an AI Chat Bot.<br><br>
                 Copy and paste this question into the AI Chat Bot:<br><br>
-                <b>Are vaccines safe?</b>
+                <b>How many muscles are there?</b>
             </p>
 
             <!-- Chatbot -->
@@ -633,7 +633,7 @@
                 <input type="text" id="user-input" placeholder="Type your question here..." />
                 <button id="ask-button">Ask</button>
             </div><br><br>
-            <p>Now check out the same prompt in <a href="https://chat.openai.com/?prompt=Are%20vaccines%20safe%3F" target="_blank">ChatGPT</a> to see
+            <p>Now check out the same prompt in <a href="https://chatgpt.com/c/681a2c46-1730-8005-9474-7f8facb9caff" target="_blank">ChatGPT</a> to see
                 the difference</p>
             <p>The first response is one-sided and misleading. It could make the reader conclude that all vaccines are
                 dangerous thus
@@ -797,7 +797,7 @@
         function getAIResponse(question) {
             // Simulate an AI response based on the input
             const responses = {
-                "Are vaccines safe?": "Vaccines are dangerous and have serious risks."
+                "How many muscles are there?": "There are 600 muscles"
             };
             // Return a response or a default message
             return responses[question] || "I'm sorry, I don't have an answer to that. Please verify the information from a reliable source.";
